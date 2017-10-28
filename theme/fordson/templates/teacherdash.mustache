@@ -55,8 +55,8 @@
         </div>
         {{/hasuserpermission}}
 
-        <div class="col-md-3 questionlinks">
         {{#hasquestionpermission}}
+	<div class="col-md-3 questionlinks">
         <div class="dashtitle">
             <h3><i class="fa fa-question-circle dashicon"></i>{{{qbanktitle}}}</h3>
             <p>{{{qbankdesc}}}</p>
@@ -68,9 +68,11 @@
             {{/hasqbanklinks}}
             {{/dashlinks}}
         </div>
+	</div>
         {{/hasquestionpermission}}
-        
+        	
         {{#hasbadgepermission}}
+	<div class="col-md-3 badgelinks">
         <div class="dashtitle">
             <h3><i class="fa fa-trophy dashicon"></i>{{{badgestitle}}}</h3>
             <p>{{{badgesdesc}}}</p>
@@ -82,8 +84,8 @@
             {{/hasbadgelinks}}
             {{/dashlinks}}
         </div>
+	</div>
         {{/hasbadgepermission}}
-        </div>
 
         {{#hascoursepermission}}
         <div class="col-md-3 coursemanagelinks">
