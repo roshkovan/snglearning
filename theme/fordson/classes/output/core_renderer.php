@@ -661,13 +661,16 @@ class core_renderer extends \theme_boost\output\core_renderer {
         //link catagories
         $haspermission = has_capability('enrol/category:config', $context) && $PAGE->theme->settings->coursemanagementtoggle && isset($COURSE->id) && $COURSE->id > 1;
         $userlinks = get_string('userlinks', 'theme_fordson');
-        $userlinksdesc = get_string('userlinks_desc', 'theme_fordson');
+        //$userlinksdesc = get_string('userlinks_desc', 'theme_fordson');
         $qbank = get_string('qbank', 'theme_fordson');
-        $qbankdesc = get_string('qbank_desc', 'theme_fordson');
+        //$qbankdesc = get_string('qbank_desc', 'theme_fordson');
         $badges = get_string('badges', 'theme_fordson');
-        $badgesdesc = get_string('badges_desc', 'theme_fordson');
+        //$badgesdesc = get_string('badges_desc', 'theme_fordson');
         $coursemanage = get_string('coursemanage', 'theme_fordson');
-        $coursemanagedesc = get_string('coursemanage_desc', 'theme_fordson');
+        //$coursemanagedesc = get_string('coursemanage_desc', 'theme_fordson');
+        $competencies = get_string('competencies', 'theme_fordson');
+        //$competenciesdesc = get_string('competencies_desc', 'theme_fordson');
+        
         $coursemanagementmessage = (empty($PAGE->theme->settings->coursemanagementtextbox)) ? false : format_text($PAGE->theme->settings->coursemanagementtextbox);
         $studentdashboardtextbox = (empty($PAGE->theme->settings->studentdashboardtextbox)) ? false : format_text($PAGE->theme->settings->studentdashboardtextbox);
         
@@ -730,6 +733,12 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $badgemanagelink = new moodle_url('/badges/index.php?type=2', array('id' => $PAGE->course->id));
         $badgeaddtitle = get_string('newbadge', 'badges');
         $badgeaddlink = new moodle_url('/badges/newbadge.php?type=2', array('id' => $PAGE->course->id));
+        
+        //competencies
+        $competenciesmanagetitle = get_string('competenciessettings', 'competency');
+        $competenciesmanagelink = new moodle_url('/admin/tool/lp/coursecompetencies.php', array('courseid' => $PAGE->course->id));
+        $competenciesreporttitle = get_string('pluginname', 'report_competency');
+        $competenciesreportlink = new moodle_url('/report/competency/index.php', array('id' => $PAGE->course->id));
         
         //misc
         $recyclebintitle = get_string('pluginname', 'tool_recyclebin');
@@ -844,8 +853,10 @@ class core_renderer extends \theme_boost\output\core_renderer {
         'activitylinkstitle' => $activitylinkstitle,
         'activitylinkstitle_desc' => $activitylinkstitle_desc,
         'qbankdesc' => $qbankdesc,
-        'badgestitle' => $badges,
-        'badgesdesc' => $badgesdesc,
+        //'badgestitle' => $badges,
+        //'badgesdesc' => $badgesdesc,
+        'badgestitle' => $competencies,
+        'badgesdesc' => $competenciesdesc,
         'coursemanagetitle' => $coursemanage,
         'coursemanagedesc' => $coursemanagedesc,
         'coursemanagementmessage' =>$coursemanagementmessage,
@@ -876,9 +887,9 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 array('hasuserlinks' => $grouptitle, 'title' => $grouptitle, 'url' => $grouplink),
                 array('hasuserlinks' => $enrolmethodtitle, 'title' => $enrolmethodtitle, 'url' => $enrolmethodlink),
                 array('hasuserlinks' => $logstitle, 'title' => $logstitle, 'url' => $logslink),
-                array('hasuserlinks' => $livelogstitle, 'title' => $livelogstitle, 'url' => $livelogslink),
-                array('hasuserlinks' => $participationtitle, 'title' => $participationtitle, 'url' => $participationlink),
-                array('hasuserlinks' => $activitytitle, 'title' => $activitytitle, 'url' => $activitylink),
+                //array('hasuserlinks' => $livelogstitle, 'title' => $livelogstitle, 'url' => $livelogslink),
+                //array('hasuserlinks' => $participationtitle, 'title' => $participationtitle, 'url' => $participationlink),
+                //array('hasuserlinks' => $activitytitle, 'title' => $activitytitle, 'url' => $activitylink),
                 array('hasqbanklinks' => $qbanktitle, 'title' => $qbanktitle, 'url' => $qbanklink),
                 array('hasqbanklinks' => $qcattitle, 'title' => $qcattitle, 'url' => $qcatlink),
                 array('hasqbanklinks' => $qimporttitle, 'title' => $qimporttitle, 'url' => $qimportlink),
@@ -889,11 +900,13 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 array('hascoursemanagelinks' => $courseresettitle, 'title' => $courseresettitle, 'url' => $courseresetlink),
                 array('hascoursemanagelinks' => $coursebackuptitle, 'title' => $coursebackuptitle, 'url' => $coursebackuplink),
                 array('hascoursemanagelinks' => $courserestoretitle, 'title' => $courserestoretitle, 'url' => $courserestorelink),
-                array('hascoursemanagelinks' => $courseimporttitle, 'title' => $courseimporttitle, 'url' => $courseimportlink),
-                array('hascoursemanagelinks' => $recyclebintitle, 'title' => $recyclebintitle, 'url' => $recyclebinlink),
-                array('hascoursemanagelinks' => $filtertitle, 'title' => $filtertitle, 'url' => $filterlink),
-                array('hasbadgelinks' => $badgemanagetitle, 'title' => $badgemanagetitle, 'url' => $badgemanagelink),
-                array('hasbadgelinks' => $badgeaddtitle, 'title' => $badgeaddtitle, 'url' => $badgeaddlink),
+                //array('hascoursemanagelinks' => $courseimporttitle, 'title' => $courseimporttitle, 'url' => $courseimportlink),
+                //array('hascoursemanagelinks' => $recyclebintitle, 'title' => $recyclebintitle, 'url' => $recyclebinlink),
+                //array('hascoursemanagelinks' => $filtertitle, 'title' => $filtertitle, 'url' => $filterlink),
+                //array('hasbadgelinks' => $badgemanagetitle, 'title' => $badgemanagetitle, 'url' => $badgemanagelink),
+                //array('hasbadgelinks' => $badgeaddtitle, 'title' => $badgeaddtitle, 'url' => $badgeaddlink),
+                array('hasbadgelinks' => $competenciesmanagetitle, 'title' => $competenciesmanagetitle, 'url' => $competenciesmanagelink),
+                array('hasbadgelinks' => $competenciesreporttitle, 'title' => $competenciesreporttitle, 'url' => $competenciesreportlink),
             ),
         ];
 
