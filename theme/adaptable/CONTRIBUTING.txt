@@ -1,0 +1,21 @@
+Contributing to Adaptable
+=========================
+
+Adaptable is open to your contributions. Feel free to fork it and add your contributions.
+
+You can contribute in several ways to Adaptable: fixing bugs, adding new features and translating the theme.
+
+To approve and merge your Pull Request (PR) for bugs and improvements you must follow some requirements:
+  -Open an issue first and link it to the PR
+  -ALL the code must follow the Moodle code guideline and pass Moodle Code Checker. This is mandatory. 
+  -Add your code attribution as a single line comment before the code modified. Comment every line of code if needed.
+  -Comment your code. This will help you to understand the changes.
+  -Use spaces instead tabs.
+  -Use only the default media queries: 1200px, 979px, 767px and 480px. Other values are not valid
+  -The PR must include only the issue related. If you want to submit a PR with several fixes then you must create an issue for each one and submit a   different PR for each one.
+  -Add the needed strings ONLY in English. DO NOT translate to other languages. The strings added will be translated later to the rest of languages available by its translators.
+
+
+If you want to submit a translation file then follow these rules:
+  -Use unicode and Linux format for files especially lang files (Windows format is not allowed)
+  -Write the code following the Moodle syntax
