@@ -661,15 +661,15 @@ class core_renderer extends \theme_boost\output\core_renderer {
         //link catagories
         $haspermission = has_capability('enrol/category:config', $context) && $PAGE->theme->settings->coursemanagementtoggle && isset($COURSE->id) && $COURSE->id > 1;
         $userlinks = get_string('userlinks', 'theme_fordson');
-        //$userlinksdesc = get_string('userlinks_desc', 'theme_fordson');
+        $userlinksdesc = get_string('userlinks_desc', 'theme_fordson');
         $qbank = get_string('qbank', 'theme_fordson');
-        //$qbankdesc = get_string('qbank_desc', 'theme_fordson');
+        $qbankdesc = get_string('qbank_desc', 'theme_fordson');
         $badges = get_string('badges', 'theme_fordson');
-        //$badgesdesc = get_string('badges_desc', 'theme_fordson');
+        $badgesdesc = get_string('badges_desc', 'theme_fordson');
         $coursemanage = get_string('coursemanage', 'theme_fordson');
-        //$coursemanagedesc = get_string('coursemanage_desc', 'theme_fordson');
+        $coursemanagedesc = get_string('coursemanage_desc', 'theme_fordson');
         $competencies = get_string('competencies', 'theme_fordson');
-        //$competenciesdesc = get_string('competencies_desc', 'theme_fordson');
+        $competenciesdesc = get_string('competencies_desc', 'theme_fordson');
         
         $coursemanagementmessage = (empty($PAGE->theme->settings->coursemanagementtextbox)) ? false : format_text($PAGE->theme->settings->coursemanagementtextbox);
         $studentdashboardtextbox = (empty($PAGE->theme->settings->studentdashboardtextbox)) ? false : format_text($PAGE->theme->settings->studentdashboardtextbox);
@@ -848,17 +848,16 @@ class core_renderer extends \theme_boost\output\core_renderer {
         'togglebutton' => $togglebutton,
         'togglebuttonstudent' => $togglebuttonstudent,
         'userlinkstitle' => $userlinks,
-        'userlinksdesc' => $userlinksdesc,
+        //'userlinksdesc' => $userlinksdesc,
         'qbanktitle' => $qbank,
         'activitylinkstitle' => $activitylinkstitle,
         'activitylinkstitle_desc' => $activitylinkstitle_desc,
-        'qbankdesc' => $qbankdesc,
+        //'qbankdesc' => $qbankdesc,
         //'badgestitle' => $badges,
-        //'badgesdesc' => $badgesdesc,
         'badgestitle' => $competencies,
-        'badgesdesc' => $competenciesdesc,
+        //'badgesdesc' => $badgesdesc,
         'coursemanagetitle' => $coursemanage,
-        'coursemanagedesc' => $coursemanagedesc,
+        //'coursemanagedesc' => $coursemanagedesc,
         'coursemanagementmessage' =>$coursemanagementmessage,
         'progresschart' => $progresschart,
         'gradeslink' => $gradeslink,
