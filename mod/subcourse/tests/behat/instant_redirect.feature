@@ -1,5 +1,5 @@
 @mod @mod_subcourse
-Feature:
+Feature: Clicking the subcourse instance in the course outline may or may not redirect to the referenced course
   In order to visit the referenced course
   As a user
   I need to visit the subcourse activity and either click a link or there is no need to do so
@@ -20,7 +20,7 @@ Feature:
       | teacher1      | S         | editingteacher    |
       | student1      | S         | student           |
     And I log in as "teacher1"
-    And I follow "MasterCourse"
+    And I am on "MasterCourse" course homepage
     And I turn editing mode on
 
   Scenario: Student has to click the link to the referenced course manually
@@ -30,7 +30,7 @@ Feature:
       | Redirect to the referenced course | 0                   |
     And I log out
     When I log in as "student1"
-    And I follow "MasterCourse"
+    And I am on "MasterCourse" course homepage
     And I follow "Unit course 1"
     Then I should see "Go to the course SlaveCourse"
     And I follow "SlaveCourse"
@@ -43,7 +43,7 @@ Feature:
       | Redirect to the referenced course | 1                   |
     And I log out
     When I log in as "student1"
-    And I follow "MasterCourse"
+    And I am on "MasterCourse" course homepage
     And I follow "Unit course 1"
     Then I should see "SlaveCourse" in the "page-header" "region"
 
