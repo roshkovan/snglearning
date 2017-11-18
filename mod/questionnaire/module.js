@@ -167,14 +167,12 @@ function other_check_empty(name, value) {
 /* exported other_rate_uncheck */
 function other_rate_uncheck(name, value) {
     var col_name = name.substr(0, name.indexOf("_"));
-    var inputbutton = document.getElementById(name + "_" + value);
     var inputbuttons = document.getElementsByTagName("input");
     for (var i = 0; i <= inputbuttons.length - 1; i++) {
         var button = inputbuttons[i];
         if (button.type == "radio" && button.name != name && button.value == value
-                    && button.name.substr(0, name.indexOf("_")) == col_name && button.checked == true) {
-            //button.checked = false;
-        	inputbutton.checked = false;
+                    && button.name.substr(0, name.indexOf("_")) == col_name) {
+            button.checked = false;
         }
     }
 }

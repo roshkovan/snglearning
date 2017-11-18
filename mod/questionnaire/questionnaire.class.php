@@ -1172,6 +1172,27 @@ class questionnaire {
             }
         }
 
+        // Replicate any feedback data.
+        // TODO: Need to handle image attachments (same for other copies above).
+        $fbsections = $DB->get_records('questionnaire_fb_sections', ['survey_id' => $this->survey->id], 'id');
+        foreach ($fbsections as $fbsid => $fbsection) {
+            $fbsection->survey_id = $newsid;
+            $scorecalculation = unserialize($fbsection->scorecalculation);
+            $newscorecalculation = [];
+            foreach ($scorecalculation as $qid => $val) {
+                $newscorecalculation[$qidarray[$qid]] = $val;
+            }
+            $fbsection->scorecalculation = serialize($newscorecalculation);
+            unset($fbsection->id);
+            $newfbsid = $DB->insert_record('questionnaire_fb_sections', $fbsection);
+            $feedbackrecs = $DB->get_records('questionnaire_feedback', ['section_id' => $fbsid], 'id');
+            foreach ($feedbackrecs as $feedbackrec) {
+                $feedbackrec->section_id = $newfbsid;
+                unset($feedbackrec->id);
+                $DB->insert_record('questionnaire_feedback', $feedbackrec);
+            }
+        }
+
         return($newsid);
     }
 
@@ -1602,8 +1623,6 @@ class questionnaire {
     private function response_send_email($rid) {
         global $CFG, $DB, $USER;
 
-        require_once($CFG->libdir.'/phpmailer/class.phpmailer.php');
-
         $name = s($this->name);
         if (isset($this->survey) && isset($this->survey->email)) {
             $email = $this->survey->email;
@@ -1662,7 +1681,7 @@ class questionnaire {
         $mailaddresses = preg_split('/,|;/', $email);
         foreach ($mailaddresses as $email) {
             $userto = new stdClass();
-            $userto->email = $email;
+            $userto->email = trim($email);
             $userto->mailformat = 1;
             // Dummy userid to keep email_to_user happy in moodle 2.6.
             $userto->id = -10;
