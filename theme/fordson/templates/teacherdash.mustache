@@ -31,6 +31,61 @@
     <div class="coursemanagementmessage">{{{coursemanagementmessage}}}</div>
     <div class="row">
 
+        <div class="col-md-3 activities">
+        <div class="dashtitle">
+            <h3 class="card-title"><i class="fa fa-check-square-o dashicon"></i>{{{activitylinkstitle}}}</h3>
+            <p>{{{activitylinkstitle_desc}}}</p>   
+        </div>
+        <div class="list-group">
+        {{{thiscourse}}}
+        </div>
+        </div>
+
+        <div class="col-md-3 questionlinks">
+        {{#hasquestionpermission}}
+        <div class="dashtitle">
+            <h3><i class="fa fa-question-circle dashicon"></i>{{{qbanktitle}}}</h3>
+            <p>{{{qbankdesc}}}</p>
+        </div>
+        <div class="list-group">
+            {{#dashlinks}}
+            {{#hasqbanklinks}}
+                <a href="{{{url}}}" class="list-group-item">{{{title}}}</a>
+            {{/hasqbanklinks}}
+            {{/dashlinks}}
+        </div>
+        {{/hasquestionpermission}}
+        {{#hasbadgepermission}}
+        <div class="dashtitle">
+            <h3><i class="fa fa-trophy dashicon"></i>{{{badgestitle}}}</h3>
+            <p>{{{badgesdesc}}}</p>
+        </div>
+        <div class="list-group">
+            {{#dashlinks}}
+            {{#hasbadgelinks}}
+                <a href="{{{url}}}" class="list-group-item">{{{title}}}</a>
+            {{/hasbadgelinks}}
+            {{/dashlinks}}
+        </div>
+        {{/hasbadgepermission}}
+        </div>
+
+        {{#hascoursepermission}}
+        <div class="col-md-3 coursemanagelinks">
+        <div class="dashtitle">
+            <h3><i class="fa fa-cogs dashicon"></i>{{{coursemanagetitle}}}</h3>
+            <p>{{{coursemanagedesc}}}</p>
+        </div>
+        <div class="list-group">
+            {{#dashlinks}}
+            {{#hascoursemanagelinks}}
+                <a href="{{{url}}}" class="list-group-item">{{{title}}}</a>
+            {{/hascoursemanagelinks}}
+            {{/dashlinks}}
+        </div>
+        </div>
+        {{/hascoursepermission}}
+
         {{#hasuserpermission}}
         <div class="col-md-3 userlinks">
         <div class="dashtitle">
@@ -55,54 +110,6 @@
         </div>
         {{/hasuserpermission}}
 
-        {{#hasquestionpermission}}
-	<div class="col-md-3 questionlinks">
-        <div class="dashtitle">
-            <h3><i class="fa fa-question-circle dashicon"></i>{{{qbanktitle}}}</h3>
-            <p>{{{qbankdesc}}}</p>
-        </div>
-        <div class="list-group">
-            {{#dashlinks}}
-            {{#hasqbanklinks}}
-                <a href="{{{url}}}" class="list-group-item">{{{title}}}</a>
-            {{/hasqbanklinks}}
-            {{/dashlinks}}
-        </div>
-	</div>
-        {{/hasquestionpermission}}
-        	
-        {{#hasbadgepermission}}
-	<div class="col-md-3 badgelinks">
-        <div class="dashtitle">
-            <h3><i class="fa fa-trophy dashicon"></i>{{{badgestitle}}}</h3>
-            <p>{{{badgesdesc}}}</p>
-        </div>
-        <div class="list-group">
-            {{#dashlinks}}
-            {{#hasbadgelinks}}
-                <a href="{{{url}}}" class="list-group-item">{{{title}}}</a>
-            {{/hasbadgelinks}}
-            {{/dashlinks}}
-        </div>
-	</div>
-        {{/hasbadgepermission}}
-
-        {{#hascoursepermission}}
-        <div class="col-md-3 coursemanagelinks">
-        <div class="dashtitle">
-            <h3><i class="fa fa-cogs dashicon"></i>{{{coursemanagetitle}}}</h3>
-            <p>{{{coursemanagedesc}}}</p>
-        </div>
-        <div class="list-group">
-            {{#dashlinks}}
-            {{#hascoursemanagelinks}}
-                <a href="{{{url}}}" class="list-group-item">{{{title}}}</a>
-            {{/hascoursemanagelinks}}
-            {{/dashlinks}}
-        </div>
-        </div>
-        {{/hascoursepermission}}
-
     </div>
     </div>
 
@@ -120,7 +127,7 @@
     <div class="row">
     
         {{#studentdashboardtextbox}}
-        <div class="col-md-2">
+        <div class="col-md-6">
             <div class="studentdashboardtextbox">{{{studentdashboardtextbox}}}</div>
         </div>
         {{/studentdashboardtextbox}}
@@ -140,7 +147,30 @@
         </div>
         {{/hasgradebookshow}}
 
-        <div class="col-md-7 coursestafflisting">
+        {{#hascourseadminshow}} {{#studentcourseadminlink}}
+        <div class="col-md-2 studentadministration">
+            <p>{{{studentcoursemanage}}}</p><a href="{{{studentcourseadminlink}}}" alt="{{{studentcoursemanage}}}"><i class="fa fa-5x fa-cog"></i></a>
+        </div>
+        {{/studentcourseadminlink}} {{/hascourseadminshow}}
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-4 coursesummary">
+        {{#hascourseinfogroup}}
+            <div class="dashtitle">
+                <h3><i class="fa fa-{{{icon}}}">&nbsp</i>{{{title}}}</h3>
+            </div>
+                <div class="card-block">
+                    {{#courseinfo}}
+                        {{{content}}}
+                    {{/courseinfo}}
+                </div>
+        {{/hascourseinfogroup}}
+        </div>
+
+        <div class="col-md-5 coursestafflisting">
         {{#hascoursestaffgroup}}
             <div class="dashtitle">
                 <h3><i class="fa fa-{{{icon}}}">&nbsp</i>{{{title}}}</h3>
@@ -173,7 +203,18 @@
             </div>
         {{/hascoursestaffgroup}}
         </div>
+
+        <div class="col-md-3 activitylinks">
+            <div class="dashtitle">
+                <h3><i class="fa fa-check-square-o dashicon"></i>{{{activitylinkstitle}}}</h3>     
+            </div>
+            <div class="list-group">
+                {{{thiscourse}}}
+            </div>
+        </div>
+
     </div>
+
 </div>
 </div>
 </div>

@@ -14,20 +14,23 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+defined('MOODLE_INTERNAL') || die();
+
 /**
- * View and administrate BigBlueButton playback recordings
+ * A login page layout for the boost theme.
  *
- * @package   mod_recordingsbn
- * @author    Jesus Federico  (jesus [at] blindsidenetworks [dt] com)
- * @copyright 2011-2014 Blindside Networks Inc.
- * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
+ * @package   theme_boost
+ * @copyright 2016 Damyon Wiese
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
- defined('MOODLE_INTERNAL') || die();
+$bodyattributes = $OUTPUT->body_attributes();
 
-/**
- * Custom uninstallation procedure
- */
-function xmldb_recordingsbn_uninstall() {
-    return true;
-}
+$templatecontext = [
+    'sitename' => format_string($SITE->shortname, true, ['context' => context_course::instance(SITEID), "escape" => false]),
+    'output' => $OUTPUT,
+    'bodyattributes' => $bodyattributes,
+    'hascustomlogin' => $PAGE->theme->settings->showcustomlogin == 1,
+];
+
+echo $OUTPUT->render_from_template('theme_fordson/login', $templatecontext);

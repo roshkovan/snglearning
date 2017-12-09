@@ -296,7 +296,7 @@ class mod_attendance_renderer extends plugin_renderer_base {
     /**
      * Implementation of user image rendering.
      *
-     * @param help_icon $helpicon A help icon instance
+     * @param attendance_password_icon $helpicon A help icon instance
      * @return string HTML fragment
      */
     protected function render_attendance_password_icon(attendance_password_icon $helpicon) {
@@ -488,7 +488,6 @@ class mod_attendance_renderer extends plugin_renderer_base {
      * @return string
      */
     private function construct_take_controls(attendance_take_data $takedata) {
-        global $CFG;
 
         $controls = '';
         $context = context_module::instance($takedata->cm->id);

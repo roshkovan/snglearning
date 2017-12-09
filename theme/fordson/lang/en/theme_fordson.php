@@ -33,7 +33,9 @@ $string['region-side-pre'] = 'Right';
 $string['generalsettings'] = 'General settings';
 $string['advancedsettings'] = 'Advanced settings';
 $string['iconnavheading'] = 'Icon Navigation';
+$string['customloginheading'] = 'Custom Login Page';
 $string['iconnavheadingsub'] = 'Create Buttons with Icons for use on the homepage.  Links can go anywhere.';
+$string['section_mods'] = 'Modules:';
 
 // Presets Settings.
 $string['presets_settings'] = 'Presets';
@@ -43,6 +45,8 @@ $string['presetfiles_desc'] = 'Preset files can be used to dramatically alter th
     See https://docs.moodle.org/dev/Boost_Presets for information on creating and sharing your own preset files.';
 $string['preset'] = 'Theme preset';
 $string['preset_desc'] = 'Pick a preset to broadly change the look of the theme.';
+$string['favicon'] = 'Favicon';
+$string['favicon_desc'] = 'Change the favicon for Fordson. Images with a transparent background and 32px height will work best.  Allowed types: PNG, JPG, ICO';
 
 // Colours Settings.
 $string['colours_settings'] = 'Colours';
@@ -71,10 +75,12 @@ $string['navbarurl'] = 'Top Navigation bar Link Colour';
 $string['navbarurl_desc'] = 'Top sticky navigation bar link and menu colour.';
 $string['fpstartwrap'] = 'Homepage Icon Navigation Background';
 $string['fpstartwrap_desc'] = 'Background colour of the icon navigation bar.';
-$string['fpicon-colour'] = 'Homepage Icon Link Colour';
-$string['fpicon-colour_desc'] = 'Colour of the icon navigation links.';
-$string['fpiconnavhover'] = 'Homepage Icon Hover Background';
-$string['fpiconnavhover_desc'] = 'Homepage icon navigation bar background colour when hovering over button.';
+$string['fpicon-colour'] = 'Homepage Icon Button Link Colour';
+$string['fpicon-colour_desc'] = 'Colour of the icon inside the button.';
+$string['fpiconnavbg'] = 'Homepage Icon Button Background Colour';
+$string['fpiconnavbg_desc'] = 'Colour of the icon button background.';
+$string['fpiconnavhover'] = 'Homepage Icon Button Hover Background';
+$string['fpiconnavhover_desc'] = 'Homepage icon navigation button background colour when hovering.';
 $string['cardbkg'] = 'Content Background Colour';
 $string['cardbkg_desc'] = 'Content background colour for course content and blocks.';
 $string['drawerbkg'] = 'Side Drawer Background Colour';
@@ -183,7 +189,6 @@ $string['sociallinkicon'] = 'Link Icon';
 $string['sociallinkicondesc'] = 'Enter the fontawesome name of the icon for your link<br />A full list of FontAwesome icons can be found at http://fontawesome.io/icons/';
 
 // Content settings.
-
 $string['coursetileinfo'] = 'Course Display Options';
 $string['coursetileinfodesc'] = 'These settings allow you to customize how courses will be displayed on the frontpage as well as course categories.';
 $string['textcontentinfo'] = 'Custom Content';
@@ -238,6 +243,8 @@ $string['coursetilestyle'] = 'Course Tile Display';
 $string['coursetilestyle_desc'] = 'When viewing course categories you can choose from the following styles to display courses.';
 $string['gutterwidth'] = 'Content Padding';
 $string['gutterwidth_desc'] = 'This setting controls how much spacing is used on the left and right of the main content.';
+$string['frontpagemycoursessorting'] = 'Frontpage My Courses Sort Order by Last Access';
+$string['frontpagemycoursessorting_desc'] = 'When checked this feature will sort the frontpage My Courses(enrolled courses) display by last access for the user.  This will override the "Sort my courses" setting under Navigation.  If unchecked then Frontpage My Courses will display as normal.';
 
 //teacher and student dashboard slider
 $string['userlinks'] = 'User Links';
@@ -246,12 +253,10 @@ $string['qbank'] = 'Question Bank';
 $string['qbank_desc'] = 'Create and organize quiz questions';
 $string['badges'] = 'Badges';
 $string['badges_desc'] = 'Award your students';
-$string['competencies'] = 'Competencies';
-$string['competencies_desc'] = 'Manage course competencies';
 $string['coursemanage'] = 'Course Settings';
 $string['coursemanage_desc'] = 'Manage your entire course';
 $string['coursemanagementbutton'] = 'Course Management';
-$string['studentdashbutton'] = 'This Course';
+$string['studentdashbutton'] = 'Student Dashboard';
 $string['courseinfo'] = 'Course Description';
 $string['coursestaff'] = 'Course Teachers';
 $string['activitylinkstitle'] = 'Activities';
@@ -282,6 +287,8 @@ $string['showstudentcompletion'] = 'Show Student Completion';
 $string['showstudentcompletion_desc'] = 'Show student completion radial in student dashboard panel.  Even with this checked the course must have completion turned on in order to display.';
 $string['showstudentgrades'] = 'Show Student Grades';
 $string['showstudentgrades_desc'] = 'Show student gradebook link in student dashboard panel.  Even with this checked the course must have Show Student Grades turned on in order to display.';
+$string['showcourseadminstudents'] = 'Show Student Course Admin Cog';
+$string['showcourseadminstudents_desc'] = 'This displays the course settings to students.  This is needed if you want to allow them to unenroll from courses.';
 
 $string['setting_removenodesheading'] = 'Customize the Nav Drawer';
 $string['setting_removenodesperformancehint'] = 'Technically, this is done by setting the Menu Item\'s showinflatnavigation attribute to false. Thus, the node will only be hidden from the nav drawer, but it will remain in the navigation tree and can still be accessed by other parts of Moodle.';
@@ -338,6 +345,34 @@ $string['navicon5'] = 'Homepage Icon Five';
 $string['navicon6'] = 'Homepage Icon Six';
 $string['navicon7'] = 'Homepage Icon Seven';
 $string['navicon8'] = 'Homepage Icon Eight';
+// Custom Login Icon Nav
+$string['loginnavicon1'] = 'Icon One';
+$string['loginnavicon2'] = 'Icon Two';
+$string['loginnavicon3'] = 'Icon Three';
+$string['loginnavicon4'] = 'Icon Four';
+$string['loginnavicontitletext'] = 'Icon Title';
+$string['loginnavicontitletextdesc'] = 'Text to appear below the icon as a title.';
+$string['loginnavicontext'] = 'Icon Text';
+$string['loginnavicontextdesc'] = 'Text that will appear below the icon.  Keep things short for best results.';
+$string['featureimage'] = 'Feature Image';
+$string['featureimage_desc'] = 'This image will appear next to the featured text in a row.';
+$string['featuretext'] = 'Feature Text';
+$string['featuretext_desc'] = 'This text will appear next to the featured image in a row. Use a Heading4 to generate a special title within the textbox.  In the Atto Editor H4 is Heading Medium.';
+$string['feature1info'] = 'Feature One';
+$string['feature2info'] = 'Feature Two';
+$string['feature3info'] = 'Feature Three';
+$string['featureinfo_desc'] = 'A feature consists of an image and text which will appear on the custom login page in a row. You must add both an image and text in order for the feature to appear.';
+$string['customlogininfo'] = 'Custom Login Page Settings';
+$string['customlogininfo_desc'] = 'This allows you to create a custom login page.  Other settings in the theme that will display on the login page include the following:<br>
+<b>* Site Administration > Security > Site Policies > Force Users To Login = Make sure this is checked so that users will be taken to your custom login page.<br>
+* Site Administration > Appearance > Logos > Logo = Upload an image here and it will appear above the login form.<br>
+* Fordson > Custom Image Settings > Default Login Image can be used to change the background image for the login page. <br>
+* Fordson > Content Areas > Homepage Alert can be used to provide a notice on the top of the page. </b>';
+$string['showcustomlogin'] = 'Turn on Custom Login';
+$string['showcustomlogin_desc'] = 'You must turn this on to activate the custom settings below.';
+$string['logintopimage'] = 'Login Page Banner Image';
+$string['logintopimage_desc'] = 'This image appears on the login page to the right of the login form.  This is ideal for a logo or banner with a transparent background.';
+
 
 //FP Icon Nav default text for buttons
 $string['naviconbutton1textdefault'] = 'Dashboard';
