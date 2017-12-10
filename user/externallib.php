@@ -97,7 +97,7 @@ class core_user_external extends external_api {
                             'lastnamephonetic' =>
                                 new external_value(core_user::get_property_type('lastnamephonetic'), 'The family name phonetically of the user', VALUE_OPTIONAL),
                             'middlename' =>
-                                new external_value(core_user::get_property_type('middlename'), 'The middle name of the user', VALUE_OPTIONAL),
+                                new external_value(core_user::get_property_type('middlename'), 'The middle name of the user'),
                             'alternatename' =>
                                 new external_value(core_user::get_property_type('alternatename'), 'The alternate name of the user', VALUE_OPTIONAL),
                             'preferences' => new external_multiple_structure(
