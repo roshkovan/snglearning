@@ -813,7 +813,9 @@ if (theme_fordson_get_setting('enablefrontpageavailablecoursebox')) {
             if (!isloggedin() or isguestuser()) {
                 return '';
             }
-            
+
+            $nomycourses = '<div class="alert alert-info alert-block">' . get_string('nomycourses', 'theme_fordson') . '</div>';
+
             $lastaccess = '';
 
             $output = '';
@@ -867,17 +869,27 @@ if (theme_fordson_get_setting('enablefrontpageavailablecoursebox')) {
                         }
                     }
                     uasort($courses, array($this, 'timeaccesscompare'));
+                } else {
+                    
+                    return $nomycourses;
+
                 }
 
             $sortorder = $lastaccess;
 
             } else if (!empty($CFG->navsortmycoursessort)) {
-            // sort courses the same as in navigation menu
-            $sortorder = 'visible DESC,'. $CFG->navsortmycoursessort.' ASC';
-            $courses  = enrol_get_my_courses('summary, summaryformat', $sortorder);
+                // sort courses the same as in navigation menu
+                $sortorder = 'visible DESC,'. $CFG->navsortmycoursessort.' ASC';
+                $courses  = enrol_get_my_courses('summary, summaryformat', $sortorder);
+                if (!$courses) {
+                    return $nomycourses;
+                }
             } else {
                 $sortorder = 'visible DESC,sortorder ASC';
                 $courses  = enrol_get_my_courses('summary, summaryformat', $sortorder);
+                if (!$courses) {
+                    return $nomycourses;
+                }
             }
             
             $rhosts   = array();
@@ -932,4 +944,3 @@ if (theme_fordson_get_setting('enablefrontpageavailablecoursebox')) {
 
     }
 }
-

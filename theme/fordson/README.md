@@ -23,6 +23,14 @@ Documentation can be found here: https://goo.gl/oUczeD
 # Install from Github
 Click on the button to "Clone or Download" https://github.com/dbnschools/moodle-theme_fordson . When downloaded to your computer, unzip it. It should create a folder named "moodle-theme_fordson-master". Rename the folder so that it is "fordson" (without quotes). You can FTP that folder to your moodle site in /moodle/theme/ directory. Or you can create a new ZIP file of the "fordson" folder and upload and install it via the Plugin Administration in Site Administration.
 
+## Fordson Moodle 34 1.6.6
+* New behavior when using My Courses on homepage.  If not enrolled in a course it will let user know and point them to the course category listings.  Default behavior is to show available courses which is often undesired.
+* New Preset - MicroPD.  A brand new preset style will provide visual cues and styling that is ideal when using Moodle for micro-learning and chunking information in topics.
+* Various CSS fixes.
+* Changed language string for "Student Dashboard" to read "Course Dashboard" to be consistent with the teacher "Course Management"
+* Moved activity navigation menu to be outside of the activity container.  This provides a degree of separation that our students need.  It can be confusing to have the activity navigation so close to navigation in the activity like a lesson or assignment.
+* New styling for activity navigation.
+
 ## Fordson Moodle 34 1.6.5.1
 * Fixed undefined variable introduced by the new feature of ordering courses by last access.
 * Fixed course completion large icons.

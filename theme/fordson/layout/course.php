@@ -50,7 +50,7 @@ $templatecontext = [
     'bodyattributes' => $bodyattributes, 
     'navdraweropen' => $navdraweropen, 
     'regionmainsettingsmenu' => $regionmainsettingsmenu, 
-    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu) 
+    'hasregionmainsettingsmenu' => !empty($regionmainsettingsmenu)
 ];
 
 if (isset($PAGE->theme->settings->toggledrawermenu) && $PAGE->theme->settings->toggledrawermenu == 1) {

@@ -36,6 +36,7 @@ $string['iconnavheading'] = 'Icon Navigation';
 $string['customloginheading'] = 'Custom Login Page';
 $string['iconnavheadingsub'] = 'Create Buttons with Icons for use on the homepage.  Links can go anywhere.';
 $string['section_mods'] = 'Modules:';
+$string['nomycourses'] = 'You are not enrolled in any courses.';
 
 // Presets Settings.
 $string['presets_settings'] = 'Presets';
@@ -256,7 +257,7 @@ $string['badges_desc'] = 'Award your students';
 $string['coursemanage'] = 'Course Settings';
 $string['coursemanage_desc'] = 'Manage your entire course';
 $string['coursemanagementbutton'] = 'Course Management';
-$string['studentdashbutton'] = 'Student Dashboard';
+$string['studentdashbutton'] = 'Course Dashboard';
 $string['courseinfo'] = 'Course Description';
 $string['coursestaff'] = 'Course Teachers';
 $string['activitylinkstitle'] = 'Activities';

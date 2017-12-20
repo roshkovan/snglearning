@@ -42,8 +42,6 @@ function questionnaire_supports($feature) {
             return false;
         case FEATURE_GROUPINGS:
             return true;
-        case FEATURE_GROUPMEMBERSONLY:
-            return true;
         case FEATURE_GROUPS:
             return true;
         case FEATURE_MOD_INTRO:
@@ -114,6 +112,10 @@ function questionnaire_add_instance($questionnaire) {
                 // Even if they are *copies* of public or template questionnaires.
                 $DB->set_field('questionnaire_survey', 'realm', 'private', array('id' => $sid));
             }
+            // If the survey has dependency data, need to set the questionnaire to allow dependencies.
+            if ($DB->count_records('questionnaire_dependency', ['surveyid' => $sid]) > 0) {
+                $questionnaire->navigate = 1;
+            }
         }
         $questionnaire->sid = $sid;
     }
@@ -139,6 +141,9 @@ function questionnaire_add_instance($questionnaire) {
     }
 
     questionnaire_set_events($questionnaire);
+
+    $completiontimeexpected = !empty($questionnaire->completionexpected) ? $questionnaire->completionexpected : null;
+    \core_completion\api::update_completion_date_event($questionnaire->coursemodule, 'questionnaire', $questionnaire->id, $completiontimeexpected);
 
     return $questionnaire->id;
 }
@@ -177,6 +182,9 @@ function questionnaire_update_instance($questionnaire) {
 
     questionnaire_set_events($questionnaire);
 
+    $completiontimeexpected = !empty($questionnaire->completionexpected) ? $questionnaire->completionexpected : null;
+    \core_completion\api::update_completion_date_event($questionnaire->coursemodule, 'questionnaire', $questionnaire->id, $completiontimeexpected);
+
     return $DB->update_record("questionnaire", $questionnaire);
 }
 
@@ -193,6 +201,13 @@ function questionnaire_delete_instance($id) {
 
     $result = true;
 
+    if ($events = $DB->get_records('event', array("modulename" => 'questionnaire', "instance" => $questionnaire->id))) {
+        foreach ($events as $event) {
+            $event = calendar_event::load($event);
+            $event->delete();
+        }
+    }
+
     if (! $DB->delete_records('questionnaire', array('id' => $questionnaire->id))) {
         $result = false;
     }
@@ -201,13 +216,6 @@ function questionnaire_delete_instance($id) {
         // If this survey is owned by this course, delete all of the survey records and responses.
         if ($survey->courseid == $questionnaire->course) {
             $result = $result && questionnaire_delete_survey($questionnaire->sid, $questionnaire->id);
-        }
-    }
-
-    if ($events = $DB->get_records('event', array("modulename" => 'questionnaire', "instance" => $questionnaire->id))) {
-        foreach ($events as $event) {
-            $event = calendar_event::load($event);
-            $event->delete();
         }
     }
 
@@ -1164,3 +1172,34 @@ function questionnaire_get_completion_state($course, $cm, $userid, $type) {
         return $type;
     }
 }
+
+/**
+ * This function receives a calendar event and returns the action associated with it, or null if there is none.
+ *
+ * This is used by block_myoverview in order to display the event appropriately. If null is returned then the event
+ * is not displayed on the block.
+ *
+ * @param calendar_event $event
+ * @param \core_calendar\action_factory $factory
+ * @return \core_calendar\local\event\entities\action_interface|null
+ */
+function mod_questionnaire_core_calendar_provide_event_action(calendar_event $event,
+                                                            \core_calendar\action_factory $factory) {
+    $cm = get_fast_modinfo($event->courseid)->instances['questionnaire'][$event->instance];
+
+    $completion = new \completion_info($cm->get_course());
+
+    $completiondata = $completion->get_data($cm, false);
+
+    if ($completiondata->completionstate != COMPLETION_INCOMPLETE) {
+        return null;
+    }
+
+    return $factory->create_instance(
+            get_string('view'),
+            new \moodle_url('/mod/questionnaire/view.php', ['id' => $cm->id]),
+            1,
+            true
+    );
+}
+

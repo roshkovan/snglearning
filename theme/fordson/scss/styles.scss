@@ -39,6 +39,7 @@ $activityhover: #fff6ae !default;
 $gutterwidth: 6rem !default;
 $bg-inverse-link-color: $brand-primary !default;
 $footer-link-color: $bg-inverse-link-color !default;
+$calendartoday: #fbffba !default;
 
 /**
 * Layout Header
@@ -808,6 +809,10 @@ ul.teacherscourseview {
 * TIDY UP 
 **/
 
+#page-mod-quiz-attempt .submitbtns, #page-mod-quiz-review .submitbtns {
+    padding-bottom: 2rem;
+}
+
 #page-badges-mybadges .fpwonderbox {
     display: none;
 }
@@ -857,6 +862,14 @@ ul.teacherscourseview {
 
 .path-mod-assign .no-overflow {
     overflow: auto;
+}
+
+// Calendar.
+.today {
+    background-color: $calendartoday;
+}
+.maincalendar .calendarmonth td, .maincalendar .calendarmonth th {
+    border: 1px solid #e6e6e6;
 }
 
 // Lesson progressbar fix
@@ -963,4 +976,16 @@ li.section.hidden {
 
 .course-content .section-summary {
     border: 0;
+}
+
+// Lesson Module multiple choice fixes.
+.path-mod-lesson label.form-check-label input[type="radio"] {
+    float: left;
+    margin-right: 1em;
+    margin-top: .25rem;
+}
+
+.path-mod-lesson label.form-check-label p {
+    display: block;
+    margin-left: 2rem;
 }

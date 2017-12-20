@@ -87,17 +87,20 @@
                     {{/hasregionmainsettingsmenu}}
                     {{{ output.course_content_header }}}
                     {{{ output.main_content }}}
-                    {{{ output.activity_navigation }}}
                     {{{ output.course_content_footer }}}
                     </div>
+                    
                 </section>
                 {{#hasblocks}}
                 <section data-region="blocks-column" class="hidden-print">
                     {{{ sidepreblocks }}}
                 </section>
                 {{/hasblocks}}
+
             </div>
+
         </div>
+        {{{ output.activity_navigation }}}
     </div>
 </div>
     {{> theme_boost/nav-drawer }}

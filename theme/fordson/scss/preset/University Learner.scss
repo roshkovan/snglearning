@@ -539,10 +539,26 @@ body#page-login-index {
 }
 
 .path-course-view .completionprogress {
-    position: absolute;
-    right: $spacer;
+    right: 1rem;
+    bottom: 1rem;
 }
 
+.m-t-2.m-b-1 {
+    background-color: darken($body-bg, 10%);
+    padding: 1rem;
+    border-radius: 3px;
+    margin: 0!important;
+    border-top: 7px solid rgba(0,0,0,.2);
+    border-radius: 0;
+}
+
+.course-content .single-section .section-navigation {
+    padding: 1rem;
+    border-radius: 3px;
+    margin: 0!important;
+    border-top: 7px solid rgba(0,0,0,.2);
+    border-radius: 0;
+}
 
 /*Special thanks to Shaun Daubney (Theme Aardvark)
 for the colored icons in the blocks.

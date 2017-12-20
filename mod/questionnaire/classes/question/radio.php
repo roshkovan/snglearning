@@ -59,14 +59,29 @@ class radio extends base {
     }
 
     /**
+     * Override this and return true if the question type allows dependent questions.
+     * @return boolean
+     */
+    public function allows_dependents() {
+        return true;
+    }
+
+    /**
+     * True if question type supports feedback options. False by default.
+     */
+    public function supports_feedback() {
+        return true;
+    }
+
+    /**
      * Return the context tags for the check question template.
      * @param object $data
-     * @param string $descendantdata
+     * @param array $dependants Array of all questions/choices depending on this question.
      * @param boolean $blankquestionnaire
      * @return object The check question context tags.
      *
      */
-    protected function question_survey_display($data, $descendantsdata, $blankquestionnaire=false) {
+    protected function question_survey_display($data, $dependants=[], $blankquestionnaire=false) {
         // Radio buttons
         global $idcounter;  // To make sure all radio buttons have unique ids. // JR 20 NOV 2007.
 
@@ -81,14 +96,16 @@ class radio extends base {
         $ischecked = false;
 
         // To display or hide dependent questions on Preview page.
-        $onclickdepend = [];
-        if ($descendantsdata) {
-            $descendants = implode(',', $descendantsdata['descendants']);
-            foreach ($descendantsdata['choices'] as $key => $choice) {
-                $choices[$key] = implode(',', $choice);
-                $onclickdepend[$key] = 'depend(\''.$descendants.'\', \''.$choices[$key].'\')';
+        $dqids = '';
+        $choices = [];
+        foreach ($dependants as $did => $dependant) {
+            $dqids .= empty($dqids) ? 'qn-' . $did : ',qn-' . $did;
+            foreach ($dependant as $choice) {
+                if (isset($choice->id)) {
+                    $choices[$choice->id] .= isset($choices[$choice->id]) ? ',qn-' . $did : 'qn-' . $did;
+                }
             }
-        } // End dependents.
+        }
 
         $choicetags = new \stdClass();
         $choicetags->qelements = [];
@@ -98,19 +115,6 @@ class radio extends base {
             if ($horizontal) {
                 $radio->horizontal = $horizontal;
             }
-
-            // To display or hide dependent questions on Preview page.
-            if ($onclickdepend) {
-                if (isset($onclickdepend[$id])) {
-                    $radio->onclick = $onclickdepend[$id];
-                } else {
-                    // In case this dependchoice is not used by any child question.
-                    $radio->onclick = 'depend(\''.$descendants.'\', \'\')';
-                }
-
-            } else {
-                $radio->onclick = 'other_check_empty(name, value)';
-            } // End dependents.
 
             if ($other !== 0) { // This is a normal radio button.
                 $htmlid = 'auto-rb'.sprintf('%04d', ++$idcounter);
@@ -163,7 +167,7 @@ class radio extends base {
         }
 
         // CONTRIB-846.
-        if ($this->required == 'n') {
+        if (!$this->required()) {
             $radio = new \stdClass();
             $id = '';
             $htmlid = 'auto-rb'.sprintf('%04d', ++$idcounter);
@@ -171,17 +175,9 @@ class radio extends base {
                 $radio->horizontal = $horizontal;
             }
 
-            // To display or hide dependent questions on Preview page.
-            $onclick = '';
-            if ($onclickdepend) {
-                $onclick = 'depend(\''.$descendants.'\', \'\')';
-            } else {
-                $onclick = 'other_check_empty(name, value)';
-            } // End dependents.
             $radio->name = 'q'.$this->id;
             $radio->id = $htmlid;
             $radio->value = $id;
-            $radio->onclick = $onclick;
 
             if (!$ischecked && !$blankquestionnaire) {
                 $radio->checked = true;
@@ -250,7 +246,7 @@ class radio extends base {
      * @return boolean
      */
     public function response_complete($responsedata) {
-        if (isset($responsedata->{'q'.$this->id}) && ($this->required == 'y') &&
+        if (isset($responsedata->{'q'.$this->id}) && ($this->required()) &&
                 (strpos($responsedata->{'q'.$this->id}, 'other_') !== false)) {
             return !empty($responsedata->{'q'.$this->id.''.substr($responsedata->{'q'.$this->id}, 5)});
         } else {
