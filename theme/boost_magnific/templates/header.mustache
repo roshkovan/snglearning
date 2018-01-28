@@ -27,7 +27,7 @@
     <div class="container-fluid navbar-nav">
 
         <div data-region="drawer-toggle">
-            <button class="btn pull-xs-left btn-secondary navbar-toggler"
+            <button class="btn pull-xs-left navbar-toggler"
                     aria-expanded="{{#navdraweropen}}true{{/navdraweropen}}{{^navdraweropen}}false{{/navdraweropen}}"
                     aria-controls="nav-drawer" type="button"
                     data-action="toggle-drawer" data-side="left" data-preference="drawer-open-nav">
@@ -42,7 +42,9 @@
                     <img src="{{output.get_compact_logo_url}}" alt="{{sitename}}">
                 </span>
             {{/ output.should_display_navbar_logo }}
-            <span class="site-name">{{{ sitename }}}</span>
+            {{^ output.should_display_navbar_logo }}
+                <span class="site-name">{{{ sitename }}}</span>
+            {{/ output.should_display_navbar_logo }}
         </a>
 
         <!-- user_menu -->

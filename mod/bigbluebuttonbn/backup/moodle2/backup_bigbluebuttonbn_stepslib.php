@@ -1,5 +1,4 @@
 <?php
-
 // This file is part of Moodle - http://moodle.org/
 //
 // Moodle is free software: you can redistribute it and/or modify
@@ -16,56 +15,60 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package    mod_bigbluebuttonbn
- * @subpackage backup-moodle2
- * @copyright  2010 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * Class for the structure used for backup BigBlueButtonBN.
+ *
+ * @package   mod_bigbluebuttonbn
+ * @copyright 2010-2017 Blindside Networks Inc
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
+ * @author    Fred Dixon  (ffdixon [at] blindsidenetworks [dt] com)
+ * @author    Jesus Federico  (jesus [at] blindsidenetworks [dt] com)
  */
+
+defined('MOODLE_INTERNAL') || die();
 
 /**
- * Define all the backup steps that will be used by the backup_bigbluebuttonbn_activity_task
+ * Define all the backup steps that will be used by the backup_bigbluebuttonbn_activity_task.
+ *
+ * @copyright 2010-2017 Blindside Networks Inc
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
  */
-
-/**
- * Define the complete bigbluebuttonbn structure for backup, with file and id annotations
- */
-class backup_bigbluebuttonbn_activity_structure_step extends backup_activity_structure_step {
-
+class backup_bigbluebuttonbn_activity_structure_step extends backup_activity_structure_step
+{
+    /**
+     * Define the complete bigbluebuttonbn structure for backup, with file and id annotations.
+     *
+     * @return object
+     */
     protected function define_structure() {
-        $userinfo = $this->get_setting_value('userinfo');
 
-        // Define each element separated
+        // Define each element separated.
         $bigbluebuttonbn = new backup_nested_element('bigbluebuttonbn', array('id'), array(
-                           'course', 'name', 'intro', 'introformat', 'meetingid',
-                           'moderatorpass', 'viewerpass', 'wait', 'record', 'tagging',
-                           'welcome', 'voicebridge', 'openingtime', 'closingtime',
-                           'timecreated', 'timemodified', 'presentation', 'participants',
-                           'userlimit'));
+                            'type', 'course', 'name', 'intro', 'introformat', 'meetingid',
+                            'moderatorpass', 'viewerpass', 'wait', 'record', 'welcome',
+                            'voicebridge', 'openingtime', 'closingtime', 'timecreated',
+                            'timemodified', 'presentation', 'participants', 'userlimit',
+                            'recordings_html', 'recordings_deleted', 'recordings_imported'));
 
         $logs = new backup_nested_element('logs');
 
         $log = new backup_nested_element('log', array('id'), array(
-                'courseid', 'bigbluebuttonbnid', 'userid', 'timecreated', 'meetingid', 'log', 'meta'));
+                'courseid', 'bigbluebuttonbnid', 'userid', 'timecreated', 'meetingid', 'log', 'meta', ));
 
-        // Build the tree
+        // Build the tree.
         $bigbluebuttonbn->add_child($logs);
         $logs->add_child($log);
 
-        // Define sources
+        // Define sources.
         $bigbluebuttonbn->set_source_table('bigbluebuttonbn', array('id' => backup::VAR_ACTIVITYID));
-        $log->set_source_table('bigbluebuttonbn_logs', array('bigbluebuttonbnid'=>backup::VAR_PARENTID));
+        $log->set_source_table('bigbluebuttonbn_logs', array('bigbluebuttonbnid' => backup::VAR_PARENTID));
 
-        // User related logs only happen if we are including user info
-        if ($userinfo) {
-        }
-
-        // Define id annotations
+        // Define id annotations.
         $log->annotate_ids('user', 'userid');
 
-        // Define file annotations
-        $bigbluebuttonbn->annotate_files('mod_bigbluebuttonbn', 'intro', null); // bigbluebuttonbn_intro area don't use itemid
+        // Define file annotations.
+        $bigbluebuttonbn->annotate_files('mod_bigbluebuttonbn', 'intro', null);
 
-        // Return the root element (bigbluebuttonbn), wrapped into standard activity structure
+        // Return the root element (bigbluebuttonbn), wrapped into standard activity structure.
         return $this->prepare_activity_structure($bigbluebuttonbn);
     }
 }

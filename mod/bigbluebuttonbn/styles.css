@@ -1,0 +1,24 @@
+.thumbnail {
+    float: left;
+    height: 51px;
+    padding: 4px;
+    width: 66px;
+}
+
+.thumbnail:hover {
+    display: inline-block;
+    height: auto;
+    position: absolute;
+    width: auto;
+    z-index: 99999;
+}
+
+.fa-disabled {
+    cursor: not-allowed;
+    opacity: 0.2;
+}
+
+.fa-invisible {
+    cursor: not-allowed;
+    visibility: hidden;
+}

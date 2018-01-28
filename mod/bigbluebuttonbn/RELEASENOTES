@@ -1,3 +1,54 @@
+2.2 (2017101008)
+Bug: Fix for issue with JS not supported by IE11!.
+Bug: Fix for flicking page when waiting for moderator enabled.
+
+2.2 (2017101007)
+Enhancement: Added alert boxed warning message in configuration that is shown when the old cfg global variable is used.
+Enhancement: Added filter for restricting access to links when recordings include multiple formats.
+Bug: Fix for issue with recording option showing up on 'Room/Activity only' instances.
+
+2.2 (2017101006)
+Bug: Make sure the common settings are wipped out when type is changed to 'recordings only'
+Bug: Fixed issue with import recordings not working with postgresql
+Bug: Fixed issue with recordings_imported_enabled not being shownin mod_form
+Bug: Fixed issue with filter for recordings when groups enabled
+Bug: Fixed issue with previews shown even with servers not implementing the feature
+Bug: Fixed general warning to be shown only to selected roles
+Bug: Fixed issue with 'protect' button not shown on imported links
+Bug: Fixed issue with turning on/off importing links by configuration
+
+2.2 (2017101005)
+Bug: Fix for issue with internal passwords not being generated for instances created with 2017101003.
+Bug: Fix for issue with notifications not being send when the recording is ready.
+
+2.2 (2017101004)
+Hot-Fix: Fix for issue with internal passwords not being generated on instance creation.
+
+2.2 (2017101003)
+Bug: Fix for issue when using BN servers, Recording name and description could not be edited.
+Bug: Fix for issue with html in the name when multilanguage filter is used.
+Bug: Fix for issue when editing instance the passwords were overriden.
+
+2.2 (2017101002)
+Bug: Fix for issues raised in the previous release.
+Bug: Fix for issues when importing link and using PostgreSQL.
+
+2.2 (2017101001)
+Enhancement: A general warning message can be set up by configuration.
+
+2.2 (2017101000)
+Enhancement: Included the parameter userID as part of the join request.
+Enhancement: Added preview thumbnails to recordings.
+Enhancement: Merged RecordingsBN by adding a type to differentiate if the instance implements "Room & Recordings"/"Only room"/"Only recordings".
+Enhancement: Recording name and description can be edited.
+Enhancement: Make use of Moodle tags for tagging recordings.
+Enhancement: Imported links to real recordings can also be imported.
+Enhancement: Links can be imported from activities in the same course.
+Enhancement: When users playback a recording an event for reports is logged.
+Enhancement: Guest users may are able to join a meeting based on Moodle permissions.
+Enhancement: Added automated tests.
+Refactoring: Major refactoring was applied in order to improve the quality of the code.
+
 2.1.14 (2016051919)
 Bug: Fixed issue participant list not considering rules based on Moodle roles when user had multiple.
 Bug: Fixed issue participant list not applying the default rule correctly.
@@ -25,7 +76,6 @@ Bug: Fixed Participants for style in mod_form not working in all versions.
 Bug: Fixed issue with action buttons not being updated on publish/unpublish and delete recordings
 Bug: Fixed style in 'Import recordings' and 'Go back' buttons.
 
-
 2.1.9 (2016051914)
 Bug: Fixed Participants for style in mod_form and buttons in view.
 Bug: Fixed Participants for style in mod_form not working in all versions.
@@ -37,6 +87,10 @@ Bug: Fixed issue with separated groups.
 2.1.7 (2016051911)
 Bug: Fixed issue with roles not shown correctly in Totara and any custom implementation.
 Bug: Fixed issue with a string not properly localized.
+
+2.1.7 (2016051911)
+Bug: Fixed issue with roles not shown correctly in Totara and any custom implementation.
+Bug: Fixed issue with a string not properly localised.
 
 2.1.6 (2016051910)
 Bug: Fixed issue with groups not shown correctly when set up as separated and no groups where created. (CONTRIB-6652)
@@ -87,7 +141,7 @@ Bug: backup/restore were not working on logs
 Bug: Added missing event
 
 2.1.0-b2 (2016051901)
-Fixed bug: Fix for action management not working in recordings.
+Bug: Fix for action management not working in recordings.
 
 2.1.0-b1 (2016051900)
 Enhancement: Links to recordings can now be imported into a room/activity from a different course room/activity.
@@ -108,8 +162,8 @@ Bug: When for security reasons either the webserver or the proxy ahead of the we
 Bug: When using localization in a language different than English, the recording table produced for RecordingsBN showed an 'Invalid date' message.
 
 2.0.1 (2015080608)
-Fixed bug: Adding a presentation file while creating a new BigBlueButtonBN activity failed. Only after editing the activity and adding a presentation file again would let the feature work.
-Fixed bug: A warning message was shown in the logs when joining a session
+Bug: Adding a presentation file while creating a new BigBlueButtonBN activity failed. Only after editing the activity and adding a presentation file again would let the feature work.
+Bug: Fixed warning message was shown in the logs when joining a session
 
 1.0.7 (April 8, 2012)
 Enhancement: Added Spanish and French.
@@ -125,7 +179,7 @@ Enhancement: Extended supported languages
 Enhancement: Added support for separate groups
 
 1.0-b2 (September 16, 2011)
-Enhancement: Removed unneeded code related to grade scales
+Enhancement: Removed unnecesarry code related to grade scales
 
 1.0-b1 (September 13, 2011)
 Tag: Beta release for use with BigBlueButton 0.71a and BigBlueButton 0.8-beta servers

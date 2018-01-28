@@ -1,12 +1,27 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
 /**
- * Language File
+ * Language File.
  *
  * @package   mod_bigbluebuttonbn
- * @author    Fred Dixon  (ffdixon [at] blindsidenetworks [dt] com)
- * @author    Jesus Federico  (jesus [at] blindsidenetworks [dt] com)
- * @copyright 2010-2015 Blindside Networks Inc.
+ * @copyright 2010-2017 Blindside Networks Inc
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
+ * @author    Jesus Federico  (jesus [at] blindsidenetworks [dt] com)
+ * @author    Fred Dixon  (ffdixon [at] blindsidenetworks [dt] com)
  */
 defined('MOODLE_INTERNAL') || die();
 
@@ -15,11 +30,9 @@ $string['bbbduetimeoverstartingtime'] = 'The due time for this activity must be 
 $string['bbbdurationwarning'] = 'The maximum duration for this session is %duration% minutes.';
 $string['bbbrecordwarning'] = 'This session may be recorded.';
 $string['bigbluebuttonbn:join'] = 'Join a meeting';
-$string['bigbluebuttonbn:moderate'] = 'Moderate a meeting';
 $string['bigbluebuttonbn:managerecordings'] = 'Manage recordings';
 $string['bigbluebuttonbn:addinstance'] = 'Add a new meeting';
 $string['bigbluebuttonbn'] = 'BigBlueButton';
-
 
 $string['config_general'] = 'General configuration';
 $string['config_general_description'] = 'These settings are <b>always</b> used';
@@ -28,61 +41,71 @@ $string['config_server_url_description'] = 'The URL of your BigBlueButton server
 $string['config_shared_secret'] = 'BigBlueButton Shared Secret';
 $string['config_shared_secret_description'] = 'The security salt of your BigBlueButton server.  (This default salt is for a BigBlueButton server provided by Blindside Networks that you can use for testing.)';
 
-$string['config_feature_recording'] = 'Configuration for "Recording" feature';
-$string['config_feature_recording_description'] = 'These settings are feature specific';
-$string['config_feature_recording_default'] = 'Recording feature enabled by default';
-$string['config_feature_recording_default_description'] = 'If enabled the sessions created in BigBlueButton will have recording capabilities.';
-$string['config_feature_recording_editable'] = 'Recording feature can be edited';
-$string['config_feature_recording_editable_description'] = 'If checked the interface includes an option for enable and disable the recording feature.';
-$string['config_feature_recording_icons_enabled'] = 'Icons for recording management';
-$string['config_feature_recording_icons_enabled_description'] = 'When enabled, the recording management panel shows icons for the publish/unpublish and delete actions.';
+$string['config_recording'] = 'Configuration for "Record meeting" feature';
+$string['config_recording_description'] = 'These settings are feature specific';
+$string['config_recording_default'] = 'Recording feature enabled by default';
+$string['config_recording_default_description'] = 'If enabled the sessions created in BigBlueButton will have recording capabilities.';
+$string['config_recording_editable'] = 'Recording feature can be edited';
+$string['config_recording_editable_description'] = 'If checked the interface includes an option for enable and disable the recording feature.';
+$string['config_recording_icons_enabled'] = 'Icons for recording management';
+$string['config_recording_icons_enabled_description'] = 'When enabled, the recording management panel shows icons for the publish/unpublish and delete actions.';
 
-$string['config_feature_recordingtagging'] = 'Configuration for "Recording tagging" feature';
-$string['config_feature_recordingtagging_description'] = 'These settings are feature specific';
-$string['config_feature_recordingtagging_default'] = 'Recording tagging enabled by default';
-$string['config_feature_recordingtagging_default_description'] = 'Recording tagging feature is enabled by default when a new room or conference is added.<br>When this feature is enabled an intermediate page that allows to input a description and tags for the BigBlueButton session is shown to the first moderator joining. The description and tags are afterwards used to identify the recording in the list.';
-$string['config_feature_recordingtagging_editable'] = 'Recording tagging feature can be edited';
-$string['config_feature_recordingtagging_editable_description'] = 'Recording tagging value by default can be edited when the room or conference is added or updated.';
+$string['config_recordings'] = 'Configuration for "Show recordings" feature';
+$string['config_recordings_description'] = 'These settings are feature specific';
+$string['config_recordings_general'] = 'Show recording settings';
+$string['config_recordings_general_description'] = 'These settings are used only when showing recordings';
+$string['config_recordings_html_default'] = 'UI as html is enabled by default';
+$string['config_recordings_html_default_description'] = 'If enabled the recording table is shown in plain HTML by default.';
+$string['config_recordings_html_editable'] = 'UI as html feature can be edited';
+$string['config_recordings_html_editable_description'] = 'UI as html value by default can be edited when the recordingbn is added or updated.';
+$string['config_recordings_deleted_default'] = 'Include recordings from deleted activities enabled by default';
+$string['config_recordings_deleted_default_description'] = 'If enabled the recording table will include the recordings belonging to deleted activities if there is any.';
+$string['config_recordings_deleted_editable'] = 'Include recordings from deleted activities feature can be edited';
+$string['config_recordings_deleted_editable_description'] = 'Include recordings from deleted activities by default can be edited when the recordingbn is added or updated.';
+$string['config_recordings_imported_default'] = 'Show only imported links enabled by default';
+$string['config_recordings_imported_default_description'] = 'If enabled the recording table will include only the imported links to recordings.';
+$string['config_recordings_imported_editable'] = 'Show only imported links feature can be edited';
+$string['config_recordings_imported_editable_description'] = 'Show only imported links by default can be edited when the recordingbn is added or updated.';
 
-$string['config_feature_importrecordings'] = 'Configuration for "Import recordings" feature';
-$string['config_feature_importrecordings_description'] = 'These settings are feature specific';
-$string['config_feature_importrecordings_enabled'] = 'Import recordings enabled';
-$string['config_feature_importrecordings_enabled_description'] = 'When this and the recording feature are enabled, it is possible to import recordings from different courses into an activity.';
-$string['config_feature_importrecordings_from_deleted_activities_enabled'] = 'Import recordings from deleted activities enabled';
-$string['config_feature_importrecordings_from_deleted_activities_enabled_description'] = 'When this and the import recording feature are enabled, it is possible to import recordings from activities that are no longer in the course.';
+$string['config_importrecordings'] = 'Configuration for "Import recordings" feature';
+$string['config_importrecordings_description'] = 'These settings are feature specific';
+$string['config_importrecordings_enabled'] = 'Import recordings enabled';
+$string['config_importrecordings_enabled_description'] = 'When this and the recording feature are enabled, it is possible to import recordings from different courses into an activity.';
+$string['config_importrecordings_from_deleted_enabled'] = 'Import recordings from deleted activities enabled';
+$string['config_importrecordings_from_deleted_enabled_description'] = 'When this and the import recording feature are enabled, it is possible to import recordings from activities that are no longer in the course.';
 
-$string['config_feature_waitformoderator'] = 'Configuration for "Wait for moderator" feature';
-$string['config_feature_waitformoderator_description'] = 'These settings are feature specific';
-$string['config_feature_waitformoderator_default'] = 'Wait for moderator enabled by default';
-$string['config_feature_waitformoderator_default_description'] = 'Wait for moderator feature is enabled by default when a new room or conference is added.';
-$string['config_feature_waitformoderator_editable'] = 'Wait for moderator feature can be edited';
-$string['config_feature_waitformoderator_editable_description'] = 'Wait for moderator value by default can be edited when the room or conference is added or updated.';
-$string['config_feature_waitformoderator_ping_interval'] = 'Wait for moderator ping (seconds)';
-$string['config_feature_waitformoderator_ping_interval_description'] = 'When the wait for moderator feature is enabled, the client pings for the status of the session each [number] seconds. This parameter defines the interval for requests made to the Moodle server';
-$string['config_feature_waitformoderator_cache_ttl'] = 'Wait for moderator cache TTL (seconds)';
-$string['config_feature_waitformoderator_cache_ttl_description'] = 'To support a heavy load of clients this plugin makes use of a cache. This parameter defines the time the cache will be kept before the next request is sent to the BigBlueButton server.';
+$string['config_waitformoderator'] = 'Configuration for "Wait for moderator" feature';
+$string['config_waitformoderator_description'] = 'These settings are feature specific';
+$string['config_waitformoderator_default'] = 'Wait for moderator enabled by default';
+$string['config_waitformoderator_default_description'] = 'Wait for moderator feature is enabled by default when a new room or conference is added.';
+$string['config_waitformoderator_editable'] = 'Wait for moderator feature can be edited';
+$string['config_waitformoderator_editable_description'] = 'Wait for moderator value by default can be edited when the room or conference is added or updated.';
+$string['config_waitformoderator_ping_interval'] = 'Wait for moderator ping (seconds)';
+$string['config_waitformoderator_ping_interval_description'] = 'When the wait for moderator feature is enabled, the client pings for the status of the session each [number] seconds. This parameter defines the interval for requests made to the Moodle server';
+$string['config_waitformoderator_cache_ttl'] = 'Wait for moderator cache TTL (seconds)';
+$string['config_waitformoderator_cache_ttl_description'] = 'To support a heavy load of clients this plugin makes use of a cache. This parameter defines the time the cache will be kept before the next request is sent to the BigBlueButton server.';
 
-$string['config_feature_voicebridge'] = 'Configuration for "Voice bridge" feature';
-$string['config_feature_voicebridge_description'] = 'These settings enable or disable options in the UI and also define default values for these options.';
-$string['config_feature_voicebridge_editable'] = 'Conference voice bridge can be edited';
-$string['config_feature_voicebridge_editable_description'] = 'Conference voice bridge number can be permanently assigned to a room conference. When assigned, the number can not be used by any other room or conference';
+$string['config_voicebridge'] = 'Configuration for "Voice bridge" feature';
+$string['config_voicebridge_description'] = 'These settings enable or disable options in the UI and also define default values for these options.';
+$string['config_voicebridge_editable'] = 'Conference voice bridge can be edited';
+$string['config_voicebridge_editable_description'] = 'Conference voice bridge number can be permanently assigned to a room conference. When assigned, the number can not be used by any other room or conference';
 
-$string['config_feature_preuploadpresentation'] = 'Configuration for "Pre-upload presentation" feature';
-$string['config_feature_preuploadpresentation_description'] = 'These settings enable or disable options in the UI and also define default values for these options. The feature works only if the Moodle server is accessible to BigBlueButton..';
-$string['config_feature_preuploadpresentation_enabled'] = 'Pre-uploading presentation enabled';
-$string['config_feature_preuploadpresentation_enabled_description'] = 'Preupload presentation feature is enabled in the UI when the room or conference is added or updated.';
+$string['config_preuploadpresentation'] = 'Configuration for "Pre-upload presentation" feature';
+$string['config_preuploadpresentation_description'] = 'These settings enable or disable options in the UI and also define default values for these options. The feature works only if the Moodle server is accessible to BigBlueButton..';
+$string['config_preuploadpresentation_enabled'] = 'Pre-uploading presentation enabled';
+$string['config_preuploadpresentation_enabled_description'] = 'Preupload presentation feature is enabled in the UI when the room or conference is added or updated.';
 
-$string['config_permission'] = 'Permission configuration';
-$string['config_permission_description'] = 'These settings define the permissions by default for the rooms or conference created.';
-$string['config_permission_moderator_default'] = 'Moderator by default';
-$string['config_permission_moderator_default_description'] = 'This rule is used by default when a new room or conference is added.';
+$string['config_participant'] = 'Participant configuration';
+$string['config_participant_description'] = 'These settings define the role by default for participants in a conference.';
+$string['config_participant_moderator_default'] = 'Moderator by default';
+$string['config_participant_moderator_default_description'] = 'This rule is used by default when a new room is added.';
 
-$string['config_feature_userlimit'] = 'Configuration for "User limit" feature';
-$string['config_feature_userlimit_description'] = 'These settings enable or disable options in the UI and also define default values for these options.';
-$string['config_feature_userlimit_default'] = 'User limit enabled by default';
-$string['config_feature_userlimit_default_description'] = 'The number of users allowed in a session by default when a new room or conference is added. If the number is set to 0, no limit is established';
-$string['config_feature_userlimit_editable'] = 'User limit feature can be edited';
-$string['config_feature_userlimit_editable_description'] = 'User limit value by default can be edited when the room or conference is added or updated.';
+$string['config_userlimit'] = 'Configuration for "User limit" feature';
+$string['config_userlimit_description'] = 'These settings enable or disable options in the UI and also define default values for these options.';
+$string['config_userlimit_default'] = 'User limit enabled by default';
+$string['config_userlimit_default_description'] = 'The number of users allowed in a session by default when a new room or conference is added. If the number is set to 0, no limit is established';
+$string['config_userlimit_editable'] = 'User limit feature can be edited';
+$string['config_userlimit_editable_description'] = 'User limit value by default can be edited when the room or conference is added or updated.';
 
 $string['config_scheduled'] = 'Configuration for "Scheduled sessions"';
 $string['config_scheduled_description'] = 'These settings define some of the behaviour by default for scheduled sessions.';
@@ -93,19 +116,22 @@ $string['config_scheduled_duration_compensation_description'] = 'Minutes added t
 $string['config_scheduled_pre_opening'] = 'Accessible before opening time (minutes)';
 $string['config_scheduled_pre_opening_description'] = 'The time in minutes for the session to be acceessible before the schedules opening time is due.';
 
-$string['config_feature_sendnotifications'] = 'Configuration for "Send notifications" feature';
-$string['config_feature_sendnotifications_description'] = 'These settings enable or disable options in the UI and also define default values for these options.';
-$string['config_feature_sendnotifications_enabled'] = 'Send notifications enabled';
-$string['config_feature_sendnotifications_enabled_description'] = 'Send notifications feature is enabled in the UI when the room or conference is added or updated.';
+$string['config_sendnotifications'] = 'Configuration for "Send notifications" feature';
+$string['config_sendnotifications_description'] = 'These settings enable or disable options in the UI and also define default values for these options.';
+$string['config_sendnotifications_enabled'] = 'Send notifications enabled';
+$string['config_sendnotifications_enabled_description'] = 'Send notifications feature is enabled in the UI when the room or conference is added or updated.';
 
 $string['config_extended_capabilities'] = 'Configuration for extended capabilities';
 $string['config_extended_capabilities_description'] = 'Configuration for extended capabilities when the BigBlueButton server offers them.';
-$string['config_extended_feature_uidelegation_enabled'] = 'UI delegation is enabled';
-$string['config_extended_feature_uidelegation_enabled_description'] = 'These settings enable or disable the UI delegation to the BigBlueButton server.';
-$string['config_extended_feature_recordingready_enabled'] = 'Notifications when recording ready enabled';
-$string['config_extended_feature_recordingready_enabled_description'] = 'Notifications when recording ready feature is enabled.';
+$string['config_uidelegation_enabled'] = 'UI delegation is enabled';
+$string['config_uidelegation_enabled_description'] = 'These settings enable or disable the UI delegation to the BigBlueButton server.';
+$string['config_recordingready_enabled'] = 'Notifications when recording ready enabled';
+$string['config_recordingready_enabled_description'] = 'Notifications when recording ready feature is enabled.';
+$string['config_meetingevents_enabled'] = 'Register meeting events';
+$string['config_meetingevents_enabled_description'] = 'Register meeting events feature is enabled.';
 
 $string['config_warning_curl_not_installed'] = 'This feature requires the CURL extension for php installed and enabled. The settings will be accessible only if this condition is fulfilled.';
+$string['config_warning_bigbluebuttonbn_cfg_deprecated'] = 'BigBlueButtonBN is making use of config.php with a global variable that has been deprecated. Please convert the file as it will not be supported in future versions';
 
 $string['general_error_unable_connect'] = 'Unable to connect. Please check the url of the BigBlueButton server AND check to see if the BigBlueButton server is running.';
 
@@ -125,6 +151,8 @@ $string['index_heading_users'] = 'Users';
 $string['index_heading_viewer'] = 'Viewers';
 $string['index_heading'] = 'BigBlueButton Rooms';
 $string['mod_form_block_general'] = 'General settings';
+$string['mod_form_block_room'] = 'Activity/Room settings';
+$string['mod_form_block_recordings'] = 'Recording settings';
 $string['mod_form_block_presentation'] = 'Presentation content';
 $string['mod_form_block_participants'] = 'Participants';
 $string['mod_form_block_schedule'] = 'Schedule for session';
@@ -145,7 +173,6 @@ $string['mod_form_field_voicebridge'] = 'Voice bridge [####]';
 $string['mod_form_field_voicebridge_help'] = 'Voice conference number that participants enter to join the voice conference when using dial-in. A number between 1 and 9999 must be typed. If the value is 0 the static voicebridge number will be ignored and a random number will be generated by BigBlueButton. A number 7 will preced to the four digits typed';
 $string['mod_form_field_voicebridge_format_error'] = 'Format error. You should input a number between 1 and 9999.';
 $string['mod_form_field_voicebridge_notunique_error'] = 'Not a unique value. This number is being used by another room or conference.';
-$string['mod_form_field_recordingtagging'] = 'Activate tagging interface';
 $string['mod_form_field_wait'] = 'Wait for moderator';
 $string['mod_form_field_wait_help'] = 'Viewers must wait until a moderator enters the session before they can do so';
 $string['mod_form_field_welcome'] = 'Welcome message';
@@ -162,9 +189,8 @@ $string['mod_form_field_participant_list_action_add'] = 'Add';
 $string['mod_form_field_participant_list_action_remove'] = 'Remove';
 $string['mod_form_field_participant_bbb_role_moderator'] = 'Moderator';
 $string['mod_form_field_participant_bbb_role_viewer'] = 'Viewer';
-$string['mod_form_field_participant_role_unknown'] = 'Unknown';
-$string['mod_form_field_predefinedprofile'] = 'Predefined profile';
-$string['mod_form_field_predefinedprofile_help'] = 'Predefined profile';
+$string['mod_form_field_instanceprofiles'] = 'Instance type';
+$string['mod_form_field_instanceprofiles_help'] = 'Select the type for this BigBlueButtonBN instance.';
 $string['mod_form_field_notification'] = 'Send notification';
 $string['mod_form_field_notification_help'] = 'Send a notification to users enrolled to let them know that this activity has been created or modified';
 $string['mod_form_field_notification_created_help'] = 'Send a notification to users enrolled to let them know that this activity has been created';
@@ -172,7 +198,9 @@ $string['mod_form_field_notification_modified_help'] = 'Send a notification to u
 $string['mod_form_field_notification_msg_created'] = 'created';
 $string['mod_form_field_notification_msg_modified'] = 'modified';
 $string['mod_form_field_notification_msg_at'] = 'at';
-
+$string['mod_form_field_recordings_html'] = 'Show the table in plain html';
+$string['mod_form_field_recordings_deleted'] = 'Include recordings from deleted activities';
+$string['mod_form_field_recordings_imported'] = 'Show only imported links';
 
 $string['modulename'] = 'BigBlueButtonBN';
 $string['modulenameplural'] = 'BigBlueButtonBN';
@@ -201,21 +229,31 @@ $string['view_error_userlimit_reached'] = 'The number of users allowed in a meet
 $string['view_error_url_missing_parameters'] = 'There are parameters missing in this URL';
 $string['view_error_import_no_courses'] = 'No courses to look up for recordings';
 $string['view_error_import_no_recordings'] = 'No recordings in this course for importing';
+$string['view_error_invalid_session'] = 'The session is expired. Go back to the activity main page.';
 $string['view_groups_selection_join'] = 'Join';
 $string['view_groups_selection'] = 'Select the group you want to join and confirm the action';
 $string['view_login_moderator'] = 'Logging in as moderator ...';
 $string['view_login_viewer'] = 'Logging in as viewer ...';
 $string['view_noguests'] = 'The BigBlueButtonBN is not open to guests';
 $string['view_nojoin'] = 'You are not in a role allowed to join this session.';
+$string['view_recording_list_actionbar_edit'] = 'Edit';
 $string['view_recording_list_actionbar_delete'] = 'Delete';
-$string['view_recording_list_actionbar_deleting'] = 'Deleting';
+$string['view_recording_list_actionbar_import'] = 'Import';
 $string['view_recording_list_actionbar_hide'] = 'Hide';
 $string['view_recording_list_actionbar_show'] = 'Show';
 $string['view_recording_list_actionbar_publish'] = 'Publish';
 $string['view_recording_list_actionbar_unpublish'] = 'Unpublish';
-$string['view_recording_list_actionbar_publishing'] = 'Publishing';
-$string['view_recording_list_actionbar_unpublishing'] = 'Unpublishing';
-$string['view_recording_list_actionbar_processing'] = 'Processing';
+$string['view_recording_list_actionbar_protect'] = 'Make it private';
+$string['view_recording_list_actionbar_unprotect'] = 'Make it public';
+$string['view_recording_list_action_publish'] = 'Publishing';
+$string['view_recording_list_action_unpublish'] = 'Unpublishing';
+$string['view_recording_list_action_process'] = 'Processing';
+$string['view_recording_list_action_delete'] = 'Deleting';
+$string['view_recording_list_action_protect'] = 'Protecting';
+$string['view_recording_list_action_unprotect'] = 'Unprotecting';
+$string['view_recording_list_action_update'] = 'Updating';
+$string['view_recording_list_action_edit'] = 'Updating';
+$string['view_recording_list_action_play'] = 'Play';
 $string['view_recording_list_actionbar'] = 'Toolbar';
 $string['view_recording_list_activity'] = 'Activity';
 $string['view_recording_list_course'] = 'Course';
@@ -227,9 +265,10 @@ $string['view_recording_button_import'] = 'Import recording links';
 $string['view_recording_button_return'] = 'Go back';
 $string['view_recording_format_presentation'] = 'presentation';
 $string['view_recording_format_video'] = 'video';
+$string['view_recording_format_statistics'] = 'statistics';
 $string['view_section_title_presentation'] = 'Presentation file';
 $string['view_section_title_recordings'] = 'Recordings';
-$string['view_message_norecordings'] = 'There are no recording for this meeting.';
+$string['view_message_norecordings'] = 'There are no recording to show.';
 $string['view_message_finished'] = 'This activity is over.';
 $string['view_message_notavailableyet'] = 'This session is not yet available.';
 
@@ -250,7 +289,8 @@ $string['view_message_have_joined'] = 'have joined';
 $string['view_message_session_no_users'] = 'There are no users in this session';
 $string['view_message_session_has_user'] = 'There is';
 $string['view_message_session_has_users'] = 'There are';
-
+$string['view_message_session_for'] = 'the session for';
+$string['view_message_times'] = 'times';
 
 $string['view_message_room_closed'] = 'This room is closed.';
 $string['view_message_room_ready'] = 'This room is ready.';
@@ -261,14 +301,14 @@ $string['view_message_conference_wait_for_moderator'] = 'Waiting for a moderator
 $string['view_message_conference_in_progress'] = 'This conference is in progress.';
 $string['view_message_conference_has_ended'] = 'This conference has ended.';
 $string['view_message_tab_close'] = 'This tab/window must be closed manually';
-
+$string['view_message_recordings_disabled'] = 'Recordings were disabled on this server. BigBlueButtonBN instances for recordings only can not be used.';
+$string['view_message_importrecordings_disabled'] = 'Feature for import recording links is disabled on this server.';
 
 $string['view_groups_selection_warning'] = 'There is a conference room for each group. If you have access to more than one be sure to select the correct one.';
-//$string['view_groups_selection_message'] = 'Select the group you want to participate.';
-//$string['view_groups_selection_button'] = 'Select';
+$string['view_groups_nogroups_warning'] = 'The room was configured for using groups but the course does not have goups defined.';
+$string['view_groups_notenrolled_warning'] = 'The room was configured for using groups but you are not enrolled in any of them.';
 $string['view_conference_action_join'] = 'Join session';
 $string['view_conference_action_end'] = 'End session';
-
 
 $string['view_recording'] = 'recording';
 $string['view_recording_link'] = 'imported link';
@@ -276,11 +316,14 @@ $string['view_recording_link_warning'] = 'This is a link pointing to a recording
 $string['view_recording_delete_confirmation'] = 'Are you sure to delete this {$a}?';
 $string['view_recording_delete_confirmation_warning_s'] = 'This recording has {$a} link associated that was imported in a different course or activity. If the recording is deleted that link will also be removed';
 $string['view_recording_delete_confirmation_warning_p'] = 'This recording has {$a} links associated that were imported in different courses or activities. If the recording is deleted those links will also be removed';
-$string['view_recording_publish_link_error'] = 'This link can not be re-published because the physical recording is unpublished';
+$string['view_recording_publish_link_deleted'] = 'This link can not be re-published because the actual recording does not exist in the current BigBlueButton server. The link should be removed.';
+$string['view_recording_publish_link_not_published'] = 'This link can not be re-published because the actual recording is unpublished';
 $string['view_recording_unpublish_confirmation'] = 'Are you sure to unpublish this {$a}?';
 $string['view_recording_unpublish_confirmation_warning_s'] = 'This recording has {$a} link associated that was imported in a different course or activity. If the recording is unpublished that link will also be unpublished';
 $string['view_recording_unpublish_confirmation_warning_p'] = 'This recording has {$a} links associated that were imported in different courses or activities. If the recording is unpublished those links will also be unpublished';
 $string['view_recording_import_confirmation'] = 'Are you sure to import this recording?';
+$string['view_recording_unprotect_link_deleted'] = 'This link can not be un-protected because the actual recording does not exist in the current BigBlueButton server. The link should be removed.';
+$string['view_recording_unprotect_link_not_unprotected'] = 'This link can not be un-protected because the actual recording is protected';
 $string['view_recording_actionbar'] = 'Toolbar';
 $string['view_recording_activity'] = 'Activity';
 $string['view_recording_course'] = 'Course';
@@ -292,6 +335,9 @@ $string['view_recording_recording'] = 'Recording';
 $string['view_recording_duration_min'] = 'min';
 $string['view_recording_name'] = 'Name';
 $string['view_recording_tags'] = 'Tags';
+$string['view_recording_playback'] = 'Playback';
+$string['view_recording_preview'] = 'Preview';
+$string['view_recording_preview_help'] = 'Hover over an image to view it in full size';
 $string['view_recording_modal_button'] = 'Apply';
 $string['view_recording_modal_title'] = 'Set values for recording';
 
@@ -309,12 +355,9 @@ $string['event_recording_imported'] = 'Recording imported';
 $string['event_recording_published'] = 'Recording published';
 $string['event_recording_unpublished'] = 'Recording unpublished';
 
-$string['predefined_profile_default'] = 'Default';
-$string['predefined_profile_classroom'] = 'Classroom';
-$string['predefined_profile_conferenceroom'] = 'Conference room';
-$string['predefined_profile_collaborationroom'] = 'Collaboration room';
-$string['predefined_profile_scheduledsession'] = 'Scheduled session';
-
+$string['instance_type_default'] = 'Room/Activity with recordings';
+$string['instance_type_room_only'] = 'Room/Activity only';
+$string['instance_type_recording_only'] = 'Recordings only';
 
 $string['email_title_notification_has_been'] = 'has been';
 $string['email_body_notification_meeting_has_been'] = 'has been';
@@ -328,3 +371,7 @@ $string['email_body_recording_ready_for'] = 'Recording for';
 $string['email_body_recording_ready_is_ready'] = 'is ready';
 $string['email_footer_sent_by'] = 'This automatic notification message was sent by';
 $string['email_footer_sent_from'] = 'from the course';
+
+$string['view_error_meeting_not_running'] = 'Something went wrong, the meeting is not running.';
+$string['view_error_current_state_not_found'] = 'Current state was not found. The recording may have been deleted or the BigBlueButton server is not compatible with the action performed.';
+$string['view_error_action_not_completed'] = 'Action could not be completed';

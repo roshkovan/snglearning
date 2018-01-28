@@ -75,6 +75,32 @@ if ($ADMIN->fulltree) {
     $page->add($setting);
 
 
+    // Small logo file setting.
+    $title = get_string('logocompact', 'admin');
+    $description = get_string('logocompact_desc', 'admin');
+    $setting = new admin_setting_configstoredfile('core_admin/logocompact', $title, $description, 'logocompact', 0,
+        ['maxfiles' => 1, 'accepted_types' => ['.jpg', '.png']]);
+    $setting->set_updatedcallback('theme_reset_all_caches');
+    $temp->add($setting);
+
+
+    $page->add(new admin_setting_configtextarea('custommenuitems', new lang_string('custommenuitems', 'admin'),
+        new lang_string('configcustommenuitems', 'admin'),
+        "Home|/\n" . get_string ( 'courses' ) . "|/course/",
+        PARAM_RAW,
+        '50',
+        '10'));
+    $page->add(new admin_setting_configtextarea(
+        'customusermenuitems',
+        new lang_string('customusermenuitems', 'admin'),
+        new lang_string('configcustomusermenuitems', 'admin'),
+        "grades,grades|/grade/report/mygrades.php|grades\nmessages,message|/message/index.php|message\npreferences,moodle|/user/preferences.php|preferences",
+        PARAM_RAW,
+        '50',
+        '10'
+    ));
+
+
     // Add tab icons.
     $settings->add($page);
 
