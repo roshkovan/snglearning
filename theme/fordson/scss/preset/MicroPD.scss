@@ -54,6 +54,7 @@ $headerfade-bg : #a6bfbe !default;
 $header-color : #373a3c !default;
 $bg-inverse-link-color: #0e9474 !default;
 $footer-link-color: $bg-inverse-link-color !default;
+$custommenu-bg: #f5f5f5 !default;
 
 $fpstartwrap-bg : #fff !default;
 $fpicon-hover : #86b7b8 !default;
@@ -71,7 +72,7 @@ $border-radius: 3px !default;
 // Body
 $body-bg: #dae6e5 !default;
 $footer-bg: #cbdcdb !default;
-$drawer-bg: #495b67 !default;
+$drawer-bg: $body-bg !default;
 
 // Typography
 $font-family-sans-serif: Open Sans,Helvetica Neue,Arial,sans-serif !default;
@@ -168,21 +169,38 @@ $nav-tabs-justified-active-link-border-color: $body-bg !default;
     }
 
     .navbar-nav {
-        .nav-item + .nav-item {
-            margin-left: $spacer * 2;
-        }
         .nav-link {
-            font-size: $font-size-sm;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             color: $navbarurl;
-            font-weight: bold;
         }
         .nav-link:hover {
             color: darken($navbarurl, 20%);
         }
     }
 }
+
+.teacherdash .btn, .enrollcodes .btn, .siteadminlink .btn {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+    color: #fff;
+}
+
+.teacherdash .btn:hover, .enrollcodes .btn:hover, .siteadminlink .btn:hover {
+    background-color: $card-bg;
+    color: $gray-dark;
+}
+
+.tooltip.tooltip-bottom .tooltip-arrow, .tooltip.bs-tether-element-attached-top .tooltip-arrow {
+    border-bottom-color: $brand-primary;
+}
+
+.tooltip-inner {
+    background-color: $brand-primary;
+}
+.tooltip.tooltip-bottom, .tooltip.bs-tether-element-attached-top {
+    margin-top: 10px;
+}
+
+
 //
 // Tabs
 //
@@ -342,11 +360,10 @@ aside#block-region-side-pre .block {
  * MicroPD.
  */
 #page-header .headerfade {
-    /*box-shadow: 0 0px 5px rgba(0,0,0,.3), 0 -10px 24px rgba(0,0,0,.1) inset;*/
     box-shadow: 0 2px 2px rgba(0,0,0,.3), 0 -1px 0px rgba(0,0,0,.3) inset;
 }
 
- #nav-drawer .list-group-item {
+#nav-drawer .list-group-item {
     background-color: initial;
     border: 0;
     border-radius: 0;
@@ -401,10 +418,7 @@ div#learningcontent {
 
 div#page-content {
     background-color: $card-bg;
-    margin-top: .5rem;
-    margin-bottom: 2rem;
-    margin-left: $gutterwidth;
-    margin-right: $gutterwidth;
+    margin: 2rem $gutterwidth;
     box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
@@ -812,10 +826,6 @@ li.section.hidden .content {
 
 li.section.hidden h3.sectionname {
     border-top: 7px solid $gray-light !important;
-}
-
-a.dimmed {
-    text-decoration:line-through;
 }
 
 /*Special thanks to Shaun Daubney (Theme Aardvark)

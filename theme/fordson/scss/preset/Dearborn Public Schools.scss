@@ -156,15 +156,8 @@ $breadcrumb-divider-rtl: "/" !default;
     }
 
     .navbar-nav {
-        .nav-item + .nav-item {
-            margin-left: $spacer * 2;
-        }
         .nav-link {
-            font-size: $font-size-sm;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             color: $navbarurl;
-            font-weight: bold;
         }
         .nav-link:hover {
             color: darken($navbarurl, 20%);
@@ -172,6 +165,28 @@ $breadcrumb-divider-rtl: "/" !default;
     }
 }
 
+.teacherdash .btn, .enrollcodes .btn, .siteadminlink .btn {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+    color: #fff;
+}
+
+.teacherdash .btn:hover, .enrollcodes .btn:hover, .siteadminlink .btn:hover {
+    background-color: $card-bg;
+    color: $gray-dark;
+}
+
+
+.tooltip.tooltip-bottom .tooltip-arrow, .tooltip.bs-tether-element-attached-top .tooltip-arrow {
+    border-bottom-color: $brand-primary;
+}
+
+.tooltip-inner {
+    background-color: $brand-primary;
+}
+.tooltip.tooltip-bottom, .tooltip.bs-tether-element-attached-top {
+    margin-top: 10px;
+}
 
 /**
  * User picture.
@@ -267,6 +282,7 @@ div#page-content {
     padding: 0 $gutterwidth;
 }
 
+
 .headerbkg {
     margin-top: 0px !important;
     height: 0;
@@ -351,8 +367,7 @@ div#fpslider {
 }
 
 .course-content li.current .content ul.section {
-    border-left: 3px solid $sectionnamehighlight;
-    background-color: rgba(216, 246, 255, 0.5);
+    border-left: 3px solid $dpsaccentcolor;
 }
 
 .course-content ul.topics li.section .summary,
@@ -395,10 +410,6 @@ li.section.hidden li.activity {
 
 li.section.hidden h3.sectionname {
     border-top: 4px solid $gray !important;
-}
-
-a.dimmed {
-    text-decoration:line-through;
 }
 
 .section_action_menu {
@@ -571,6 +582,9 @@ span.instancename {
 
 //fixes for phone with main content area
 @media screen and (max-width: 576px) {
+    div#page-content {
+        padding: 0;
+    }
     #page-course-view-topics .course-content ul.topics li.section {
         padding: 2rem 0;
     }

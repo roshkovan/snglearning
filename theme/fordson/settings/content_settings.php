@@ -52,6 +52,15 @@ $setting = new admin_setting_configcheckbox($name, $title, $description, $defaul
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
+// Frontpage show additional block regions
+$name = 'theme_fordson/showblockregions';
+$title = get_string('showblockregions', 'theme_fordson');
+$description = get_string('showblockregions_desc', 'theme_fordson');
+$default = 1;
+$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
+$setting->set_updatedcallback('theme_reset_all_caches');
+$page->add($setting);
+
 // Content spacing
 $name = 'theme_fordson/learningcontentpadding';
 $title = get_string('learningcontentpadding', 'theme_fordson');
@@ -161,7 +170,7 @@ $page->add($setting);
 $name = 'theme_fordson/headericon';
 $title = get_string('headericon','theme_fordson');
 $description = get_string('headericon_desc', 'theme_fordson');
-$default = '"\f24d"';
+$default = '""';
 $choices = array(
     '"\f24d"' => 'Clone',
     '"\f02e"' => 'Bookmark',
@@ -202,7 +211,7 @@ $page->add($setting);
 $name = 'theme_fordson/sectionicon';
 $title = get_string('sectionicon','theme_fordson');
 $description = get_string('sectionicon_desc', 'theme_fordson');
-$default = '"\f07c"';
+$default = '""';
 $choices = array(
     '"\f24d"' => 'Clone',
     '"\f02e"' => 'Bookmark',
@@ -244,15 +253,6 @@ $name = 'theme_fordson/coursetileinfo';
 $heading = get_string('coursetileinfo', 'theme_fordson');
 $information = get_string('coursetileinfodesc', 'theme_fordson');
 $setting = new admin_setting_heading($name, $heading, $information);
-$page->add($setting);
-
-// Frontpage Available Courses enhancement
-$name = 'theme_fordson/enablefrontpageavailablecoursebox';
-$title = get_string('enablefrontpageavailablecoursebox', 'theme_fordson');
-$description = get_string('enablefrontpageavailablecoursebox_desc', 'theme_fordson');
-$default = 1;
-$setting = new admin_setting_configcheckbox($name, $title, $description, $default);
-$setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);
 
 // Frontpage My Courses Sort by Lastaccess.
@@ -365,7 +365,7 @@ $page->add($setting);
 $name = 'theme_fordson/enablecategoryicon';
 $title = get_string('enablecategoryicon', 'theme_fordson');
 $description = get_string('enablecategoryicon_desc', 'theme_fordson');
-$default = 1;
+$default = 0;
 $setting = new admin_setting_configcheckbox($name, $title, $description, $default);
 $setting->set_updatedcallback('theme_reset_all_caches');
 $page->add($setting);

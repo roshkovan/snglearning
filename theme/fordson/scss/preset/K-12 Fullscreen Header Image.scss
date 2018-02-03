@@ -48,10 +48,10 @@ $brand-success : #77b300 !default;
 $brand-warning : #ff8800 !default;
 $brand-danger : #ff4136 !default;
 $brand-inverse : $gray-dark !default;
-$drawer-bg : rgba(128, 143, 154, 0.9) !default;
 $headerfade-bg : #025169 !default;
 $bg-inverse-link-color: $brand-primary !default;
 $footer-link-color: $bg-inverse-link-color !default;
+$drawer-bg: rgba(128, 143, 154, 0.9) !default;
 
 // Spacing
 $spacer : 1rem !default;
@@ -63,6 +63,7 @@ $border-radius: 3px !default;
 // Body
 $body-bg: #dae6e5 !default;
 $footer-bg: $body-bg !default;
+$custommenu-bg: $body-bg !default;
 
 // Typography
 $font-family-sans-serif: "Open Sans","Helvetica Neue",Arial,sans-serif !default;
@@ -149,15 +150,8 @@ $breadcrumb-divider-rtl: "/" !default;
     }
 
     .navbar-nav {
-        .nav-item + .nav-item {
-            margin-left: $spacer * 2;
-        }
         .nav-link {
-            font-size: $font-size-sm;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             color: $navbarurl;
-            font-weight: bold;
         }
         .nav-link:hover {
             color: darken($navbarurl, 20%);
@@ -165,6 +159,27 @@ $breadcrumb-divider-rtl: "/" !default;
     }
 }
 
+.teacherdash .btn, .enrollcodes .btn, .siteadminlink .btn {
+    background-color: $brand-primary;
+    border-color: $brand-primary;
+    color: #fff;
+}
+
+.teacherdash .btn:hover, .enrollcodes .btn:hover, .siteadminlink .btn:hover {
+    background-color: $card-bg;
+    color: $gray-dark;
+}
+
+.tooltip.tooltip-bottom .tooltip-arrow, .tooltip.bs-tether-element-attached-top .tooltip-arrow {
+    border-bottom-color: $brand-primary;
+}
+
+.tooltip-inner {
+    background-color: $brand-primary;
+}
+.tooltip.tooltip-bottom, .tooltip.bs-tether-element-attached-top {
+    margin-top: 10px;
+}
 
 /**
  * User picture.

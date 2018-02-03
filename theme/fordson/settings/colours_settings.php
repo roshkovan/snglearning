@@ -194,7 +194,6 @@ $page->add(new admin_setting_heading('theme_fordson_colours', get_string('colour
     $setting->set_updatedcallback('theme_reset_all_caches');
     $page->add($setting);
 
-
     // layout card background
     $name = 'theme_fordson/cardbkg';
     $title = get_string('cardbkg', 'theme_fordson');

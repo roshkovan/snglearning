@@ -4,7 +4,7 @@
 // Copyright (c) 2013 Thomas Park
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
+// of this software and associated documentation files (the "Software"), to dea
 // in the Software without restriction, including without limitation the rights
 // to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 // copies of the Software, and to permit persons to whom the Software is
@@ -48,7 +48,6 @@ $brand-warning : #ff8800 !default;
 $brand-danger : #ff4136 !default;
 $brand-inverse : $gray-dark !default;
 $navbar-height : 50px !default;
-$drawer-bg : lighten($brand-primary, 25%) !default;
 $headerfade-bg : #fff !default;
 $header-color : #505050 !default;
 $bg-inverse-link-color: $brand-primary !default;
@@ -64,6 +63,8 @@ $border-radius: 3px !default;
 // Body
 $body-bg: #dae6e5 !default;
 $footer-bg: $body-bg !default;
+$custommenu-bg: $body-bg !default;
+$drawer-bg: $body-bg !default;
 
 // Typography
 $font-family-sans-serif: "Open Sans","Helvetica Neue",Arial,sans-serif !default;
@@ -83,7 +84,7 @@ $dropdown-border-color : #e2e2e2 !default;
 $dropdown-link-color : rgba(0, 0, 0, .535) !default;
 
 // Navbar
-$navbar-light-color : rgba(255, 255, 255, 0.9) !default;
+$navbar-light-color : #fff !default;
 $navbar-light-hover-color : $brand-primary !default;
 $navbar-light-active-color : $brand-primary !default;
 $navbarurl : #000 !default;
@@ -152,15 +153,8 @@ $breadcrumb-divider-rtl : "/" !default;
     }
 
     .navbar-nav {
-        .nav-item + .nav-item {
-            margin-left: $spacer * 2;
-        }
         .nav-link {
-            font-size: $font-size-sm;
-            text-transform: uppercase;
-            letter-spacing: 1px;
             color: $navbarurl;
-            font-weight: bold;
         }
         .nav-link:hover {
             color: darken($navbarurl, 20%);
@@ -168,6 +162,20 @@ $breadcrumb-divider-rtl : "/" !default;
     }
 }
 
+.custommenucontainer {
+    border-radius: 1rem;
+}
+
+.tooltip.tooltip-bottom .tooltip-arrow, .tooltip.bs-tether-element-attached-top .tooltip-arrow {
+    border-bottom-color: $brand-primary;
+}
+
+.tooltip-inner {
+    background-color: $brand-primary;
+}
+.tooltip.tooltip-bottom, .tooltip.bs-tether-element-attached-top {
+    margin-top: 10px;
+}
 
 /**
  * User picture.
@@ -197,7 +205,7 @@ $breadcrumb-divider-rtl : "/" !default;
 
 .headerbkg {
     margin-top: 0px !important;
-    height: $headerimagepadding !important;
+    height: 0;
     background-position: center;
     background-size: cover;
     position: absolute;
@@ -206,10 +214,18 @@ $breadcrumb-divider-rtl : "/" !default;
     width: 100%;
 }
 
-div#learningcontent {
-    position: relative;
+.pagelayout-course .headerbkg {
+    height: $headerimagepadding !important;
+}
+
+.pagelayout-course div#learningcontent {
     margin-top: $headerimagepadding;
-    background-color: $card-bg;
+}
+
+div#learningcontent {
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border: 1px solid $card-bg;
+    margin-top: 50px;
 }
 
 .course-content ul.section {
@@ -410,11 +426,6 @@ h3.sectionname {
 
 .path-mod-assign [data-region="grading-navigation"] {
     background-color: #fff;
-}
-
-div#learningcontent {
-    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.3);
-    border: 1px solid $card-bg;
 }
 
 .forumpost {

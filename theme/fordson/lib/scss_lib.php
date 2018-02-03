@@ -68,7 +68,7 @@ function theme_fordson_get_main_scss_content($theme) {
         }
         else {
             // Safety fallback - maybe new installs etc.
-            $scss .= file_get_contents($CFG->dirroot . '/theme/fordson/scss/preset/Dearborn Public Schools.scss');
+            $scss .= file_get_contents($CFG->dirroot . '/theme/fordson/scss/preset/Fordson.scss');
         }
     }
 
@@ -103,6 +103,7 @@ function theme_fordson_get_pre_scss($theme) {
     'fpiconnavbg' => ['fpicon-bg'],
     'fpiconnavhover' => ['fpicon-hover'],
     'fpiconcolour' => ['fpicon-colour'],
+    'fploginform' => ['fploginform'],
     'headerimagepadding' => ['headerimagepadding'],
     'markettextbg' => ['markettextbg'],
     'navbarurl' => ['navbarurl'],
