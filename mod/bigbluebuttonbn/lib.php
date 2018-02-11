@@ -31,6 +31,7 @@ global $CFG;
 require_once($CFG->dirroot.'/calendar/lib.php');
 require_once($CFG->dirroot.'/message/lib.php');
 require_once($CFG->dirroot.'/mod/lti/OAuth.php');
+require_once($CFG->dirroot.'/tag/lib.php');
 require_once($CFG->libdir.'/accesslib.php');
 require_once($CFG->libdir.'/completionlib.php');
 require_once($CFG->libdir.'/datalib.php');
@@ -38,6 +39,7 @@ require_once($CFG->libdir.'/coursecatlib.php');
 require_once($CFG->libdir.'/enrollib.php');
 require_once($CFG->libdir.'/filelib.php');
 require_once($CFG->libdir.'/formslib.php');
+
 
 if (file_exists(dirname(__FILE__).'/vendor/firebase/php-jwt/src/JWT.php')) {
     require_once(dirname(__FILE__).'/vendor/firebase/php-jwt/src/JWT.php');
@@ -434,6 +436,9 @@ function bigbluebuttonbn_process_pre_save_checkboxes(&$bigbluebuttonbn) {
     }
     if (!isset($bigbluebuttonbn->recordings_imported)) {
         $bigbluebuttonbn->recordings_imported = 0;
+    }
+    if (!isset($bigbluebuttonbn->recordings_preview)) {
+        $bigbluebuttonbn->recordings_preview = 0;
     }
 }
 

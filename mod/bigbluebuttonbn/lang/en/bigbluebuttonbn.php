@@ -57,15 +57,20 @@ $string['config_recordings_general_description'] = 'These settings are used only
 $string['config_recordings_html_default'] = 'UI as html is enabled by default';
 $string['config_recordings_html_default_description'] = 'If enabled the recording table is shown in plain HTML by default.';
 $string['config_recordings_html_editable'] = 'UI as html feature can be edited';
-$string['config_recordings_html_editable_description'] = 'UI as html value by default can be edited when the recordingbn is added or updated.';
+$string['config_recordings_html_editable_description'] = 'UI as html value by default can be edited when the instance is added or updated.';
 $string['config_recordings_deleted_default'] = 'Include recordings from deleted activities enabled by default';
 $string['config_recordings_deleted_default_description'] = 'If enabled the recording table will include the recordings belonging to deleted activities if there is any.';
 $string['config_recordings_deleted_editable'] = 'Include recordings from deleted activities feature can be edited';
-$string['config_recordings_deleted_editable_description'] = 'Include recordings from deleted activities by default can be edited when the recordingbn is added or updated.';
+$string['config_recordings_deleted_editable_description'] = 'Include recordings from deleted activities by default can be edited when the instance is added or updated.';
 $string['config_recordings_imported_default'] = 'Show only imported links enabled by default';
 $string['config_recordings_imported_default_description'] = 'If enabled the recording table will include only the imported links to recordings.';
 $string['config_recordings_imported_editable'] = 'Show only imported links feature can be edited';
-$string['config_recordings_imported_editable_description'] = 'Show only imported links by default can be edited when the recordingbn is added or updated.';
+$string['config_recordings_imported_editable_description'] = 'Show only imported links by default can be edited when the instance is added or updated.';
+$string['config_recordings_preview_default'] = 'Preview is enabled by default';
+$string['config_recordings_preview_default_description'] = 'If enabled the table includes a preview of the presentation.';
+$string['config_recordings_preview_editable'] = 'Preview feature can be edited';
+$string['config_recordings_preview_editable_description'] = 'Preview feature can be edited when the instance is added or updated.';
+
 
 $string['config_importrecordings'] = 'Configuration for "Import recordings" feature';
 $string['config_importrecordings_description'] = 'These settings are feature specific';
@@ -177,7 +182,7 @@ $string['mod_form_field_wait'] = 'Wait for moderator';
 $string['mod_form_field_wait_help'] = 'Viewers must wait until a moderator enters the session before they can do so';
 $string['mod_form_field_welcome'] = 'Welcome message';
 $string['mod_form_field_welcome_help'] = 'Replaces the default message setted up for the BigBlueButton server. The message can includes keywords  (%%CONFNAME%%, %%DIALNUM%%, %%CONFNUM%%) which will be substituted automatically, and also html tags like <b>...</b> or <i></i> ';
-$string['mod_form_field_welcome_default'] = '<br>Welcome to <b>%%CONFNAME%%</b>!<br><br>To understand how BigBlueButton works see our <a href="event:http://www.bigbluebutton.org/content/videos"><u>tutorial videos</u></a>.<br><br>To join the audio bridge click the headset icon (upper-left hand corner). <b>Please use a headset to avoid causing noise for others.</b>';
+$string['mod_form_field_welcome_default'] = '<br>Welcome to <b>%%CONFNAME%%</b>!<br><br>For help on using BigBlueButton see these (short)  <a href="event:http://www.bigbluebutton.org/content/videos"><u>tutorial videos</u></a>.<br><br>To join the audio bridge click the phone icon (top center). <b>Please use a headset to avoid causing background noise for others.</b>';
 $string['mod_form_field_participant_add'] = 'Add participant';
 $string['mod_form_field_participant_list'] = 'Participant list';
 $string['mod_form_field_participant_list_type_all'] = 'All users enrolled';
@@ -201,6 +206,7 @@ $string['mod_form_field_notification_msg_at'] = 'at';
 $string['mod_form_field_recordings_html'] = 'Show the table in plain html';
 $string['mod_form_field_recordings_deleted'] = 'Include recordings from deleted activities';
 $string['mod_form_field_recordings_imported'] = 'Show only imported links';
+$string['mod_form_field_recordings_preview'] = 'Show recording preview';
 
 $string['modulename'] = 'BigBlueButtonBN';
 $string['modulenameplural'] = 'BigBlueButtonBN';
@@ -359,7 +365,6 @@ $string['instance_type_default'] = 'Room/Activity with recordings';
 $string['instance_type_room_only'] = 'Room/Activity only';
 $string['instance_type_recording_only'] = 'Recordings only';
 
-$string['email_title_notification_has_been'] = 'has been';
 $string['email_body_notification_meeting_has_been'] = 'has been';
 $string['email_body_notification_meeting_details'] = 'Details';
 $string['email_body_notification_meeting_title'] = 'Title';

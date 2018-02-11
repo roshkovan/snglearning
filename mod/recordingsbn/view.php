@@ -19,7 +19,7 @@
  *
  * @package   mod_recordingsbn
  * @author    Jesus Federico  (jesus [at] blindsidenetworks [dt] com)
- * @copyright 2011-2014 Blindside Networks Inc.
+ * @copyright 2011-2018 Blindside Networks Inc.
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v2 or later
  */
 
@@ -77,7 +77,8 @@ if ( $versionmajor < '2014051200' ) {
 
 // Validates if user has permissions for managing recordings.
 $bbbsession['administrator'] = has_capability('moodle/category:manage', $context);
-$bbbsession['managerecordings'] = (has_capability('moodle/category:manage', $context) || has_capability('mod/bigbluebuttonbn:managerecordings', $context));
+$bbbsession['managerecordings'] = (has_capability('moodle/category:manage', $context) ||
+    has_capability('mod/bigbluebuttonbn:managerecordings', $context));
 
 // Additional info related to the course.
 $bbbsession['course'] = $course;
@@ -93,13 +94,12 @@ $PAGE->set_heading(format_string($course->fullname));
 $PAGE->set_context($context);
 $PAGE->set_cacheable(false);
 
-// This module was deprecated along BigBlueButtonBN 2.2 release (2017101000).
-if ($dependencyversion > '2016051919') {
+// This module was deprecated when BigBlueButtonBN 2.2 was released (2017101000).
+if ($dependencyversion >= '2017101000') {
     $PAGE->set_title(format_string($recordingsbn->name));
     echo $OUTPUT->header();
     echo $OUTPUT->box_start('generalbox boxaligncenter');
-    echo '<br><div class="alert alert-danger">' . get_string('view_deprecated', 'recordingsbn') . '</div>';
-    echo '<br><div class="alert alert-info">' . get_string('view_deprecated_info', 'recordingsbn') . '</div>';
+    recordingsbn_view_deprecation_messages($bbbsession, $dependencyversion);
     echo $OUTPUT->box_end();
     echo $OUTPUT->footer();
     exit;
@@ -221,7 +221,6 @@ if (isset($recordings) && !array_key_exists('messageKey', $recordings)) {  // Th
             // Print the table.
             echo html_writer::table($table)."\n";
         }
-
     } else {
         // Shows YUI version.
         $columns = bigbluebuttonbn_get_recording_columns($bbbsession, $recordings);
@@ -241,7 +240,7 @@ if (isset($recordings) && !array_key_exists('messageKey', $recordings)) {  // Th
                 'fullpath' => '/mod/recordingsbn/module.js',
                 'requires' => array('datatable', 'datatable-sort', 'datatable-paginator', 'datatype-number'),
         );
-        $PAGE->requires->js_init_call('M.mod_recordingsbn.datatable_init', array(), false, $jsmodule);
+        $PAGE->requires->js_init_call('M.mod_recordingsbn.datatableInit', array(), false, $jsmodule);
         echo '    </div>'."\n";
     }
 
@@ -272,3 +271,30 @@ $PAGE->requires->js_init_call('M.mod_bigbluebuttonbn.recordingsbn_init', array()
 
 // Finish the page.
 echo $OUTPUT->footer();
+
+
+/**
+ * Renders deprecation message.
+ *
+ * @param array $bbbsession
+ * @param string $dependencyversion
+ *
+ * @return string
+ */
+function recordingsbn_view_deprecation_messages($bbbsession, $dependencyversion) {
+    global $CFG;
+    $message = get_string('view_deprecated_msg_user', 'recordingsbn');
+    $info = get_string('view_deprecated_info_user', 'recordingsbn');
+    if ($bbbsession['administrator'] || $bbbsession['managerecordings']) {
+        $message = get_string('view_deprecated_msg_admin', 'recordingsbn');
+        $info = get_string('view_deprecated_info_admin', 'recordingsbn');
+    }
+    if ($dependencyversion < '2017101009') {
+        echo '<br><div class="alert alert-danger">' . $message . '</div>';
+        echo '<br><div class="alert alert-info">' . $info . '</div>';
+        return;
+    }
+    // Implements the use of new functions and option for migration
+    echo bigbluebuttonbn_render_warning($message, 'danger');
+    echo bigbluebuttonbn_render_warning($info, 'info');
+}
