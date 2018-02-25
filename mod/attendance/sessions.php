@@ -99,6 +99,9 @@ switch ($att->pageparams->action) {
         }
 
         if ($formdata = $mform->get_data()) {
+            if (empty($formdata->autoassignstatus)) {
+                $formdata->autoassignstatus = 0;
+            }
             $att->update_session_from_form_data($formdata, $sessionid);
 
             mod_attendance_notifyqueue::notify_success(get_string('sessionupdated', 'attendance'));

@@ -101,19 +101,22 @@ if ($ADMIN->fulltree) {
     $description = new lang_string('defaultsessionsettings_help', 'mod_attendance');
     $settings->add(new admin_setting_heading('defaultsessionsettings', $name, $description));
 
+    $settings->add(new admin_setting_configcheckbox('attendance/absenteereport_default',
+        get_string('includeabsentee', 'attendance'), '', 1));
+
     $settings->add(new admin_setting_configcheckbox('attendance/studentscanmark_default',
         get_string('studentscanmark', 'attendance'), '', 0));
 
-    $options = array(
-        ATTENDANCE_AUTOMARK_DISABLED => get_string('noautomark', 'attendance'),
-        ATTENDANCE_AUTOMARK_ALL => get_string('automarkall', 'attendance'),
-        ATTENDANCE_AUTOMARK_CLOSE => get_string('automarkclose', 'attendance'));
+    $options = attendance_get_automarkoptions();
 
     $settings->add(new admin_setting_configselect('attendance/automark_default',
         get_string('automark', 'attendance'), '', 0, $options));
 
     $settings->add(new admin_setting_configcheckbox('attendance/randompassword_default',
         get_string('randompassword', 'attendance'), '', 0));
+
+    $settings->add(new admin_setting_configcheckbox('attendance/autoassignstatus',
+        get_string('autoassignstatus', 'attendance'), '', 0));
 
     $name = new lang_string('defaultwarningsettings', 'mod_attendance');
     $description = new lang_string('defaultwarningsettings_help', 'mod_attendance');

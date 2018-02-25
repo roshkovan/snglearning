@@ -125,6 +125,17 @@ class mod_attendance_add_form extends moodleform {
                             array('maxfiles' => EDITOR_UNLIMITED_FILES, 'noclean' => true, 'context' => $modcontext));
         $mform->setType('sdescription', PARAM_RAW);
 
+        // If warnings allow selector for reporting.
+        if (!empty(get_config('attendance', 'enablewarnings'))) {
+            $mform->addElement('checkbox', 'absenteereport', '', get_string('includeabsentee', 'attendance'));
+            $mform->addHelpButton('absenteereport', 'includeabsentee', 'attendance');
+            if (isset($pluginconfig->absenteereport_default)) {
+                $mform->setDefault('absenteereport', $pluginconfig->absenteereport_default);
+            }
+        } else {
+            $mform->addElement('hidden', 'absenteereport', 1);
+            $mform->setType('absenteereport', PARAM_INT);
+        }
         // For multiple sessions.
         $mform->addElement('header', 'headeraddmultiplesessions', get_string('addmultiplesessions', 'attendance'));
         if (!empty($pluginconfig->multisessionexpanded)) {
@@ -175,15 +186,12 @@ class mod_attendance_add_form extends moodleform {
             $mform->addElement('checkbox', 'studentscanmark', '', get_string('studentscanmark', 'attendance'));
             $mform->addHelpButton('studentscanmark', 'studentscanmark', 'attendance');
 
-            $options = array(
-                ATTENDANCE_AUTOMARK_DISABLED => get_string('noautomark', 'attendance'),
-                ATTENDANCE_AUTOMARK_ALL => get_string('automarkall', 'attendance'),
-                ATTENDANCE_AUTOMARK_CLOSE => get_string('automarkclose', 'attendance'));
+            $options = attendance_get_automarkoptions();
 
             $mform->addElement('select', 'automark', get_string('automark', 'attendance'), $options);
             $mform->setType('automark', PARAM_INT);
             $mform->addHelpButton('automark', 'automark', 'attendance');
-            $mform->disabledif('automark', 'studentscanmark', 'notchecked');
+            $mform->hideif('automark', 'studentscanmark', 'notchecked');
             $mform->setDefault('automark', $this->_customdata['att']->automark);
 
             $mgroup = array();
@@ -193,13 +201,19 @@ class mod_attendance_add_form extends moodleform {
             $mform->addGroup($mgroup, 'passwordgrp', get_string('passwordgrp', 'attendance'), array(' '), false);
 
             $mform->setType('studentpassword', PARAM_TEXT);
-            $mform->disabledif('studentpassword', 'studentscanmark', 'notchecked');
-
             $mform->addHelpButton('passwordgrp', 'passwordgrp', 'attendance');
-            $mform->disabledif('randompassword', 'studentscanmark', 'notchecked');
-            $mform->disabledif('studentpassword', 'randompassword', 'checked');
-            $mform->disabledif('studentpassword', 'automark', 'eq', ATTENDANCE_AUTOMARK_ALL);
-            $mform->disabledif('randompassword', 'automark', 'eq', ATTENDANCE_AUTOMARK_ALL);
+
+            $mform->hideif('passwordgrp', 'studentscanmark', 'notchecked');
+            $mform->hideif('studentpassword', 'randompassword', 'checked');
+            $mform->hideif('passwordgrp', 'automark', 'eq', ATTENDANCE_AUTOMARK_ALL);
+
+            $mform->addElement('checkbox', 'autoassignstatus', '', get_string('autoassignstatus', 'attendance'));
+            $mform->addHelpButton('autoassignstatus', 'autoassignstatus', 'attendance');
+            $mform->hideif('autoassignstatus', 'studentscanmark', 'notchecked');
+
+            if (isset($pluginconfig->autoassignstatus)) {
+                $mform->setDefault('autoassignstatus', $pluginconfig->autoassignstatus);
+            }
             if (isset($pluginconfig->studentscanmark_default)) {
                 $mform->setDefault('studentscanmark', $pluginconfig->studentscanmark_default);
             }
@@ -225,14 +239,16 @@ class mod_attendance_add_form extends moodleform {
             $mform->setAdvanced('subnetgrp');
             $mform->addHelpButton('subnetgrp', 'requiresubnet', 'attendance');
 
-            $mform->disabledif('usedefaultsubnet', 'studentscanmark', 'notchecked');
-            $mform->disabledif('subnet', 'studentscanmark', 'notchecked');
-            $mform->disabledif('subnet', 'usedefaultsubnet', 'checked');
+            $mform->hideif('subnetgrp', 'studentscanmark', 'notchecked');
+            $mform->hideif('subnet', 'usedefaultsubnet', 'checked');
         } else {
             $mform->addElement('hidden', 'studentscanmark', '0');
             $mform->settype('studentscanmark', PARAM_INT);
             $mform->addElement('hidden', 'automark', '0');
             $mform->setType('automark', PARAM_INT);
+            $mform->addElement('hidden', 'autoassignstatus', '0');
+            $mform->setType('autoassignstatus', PARAM_INT);
+
             $mform->addElement('hidden', 'subnet', '');
             $mform->setType('subnet', PARAM_TEXT);
         }

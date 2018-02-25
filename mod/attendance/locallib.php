@@ -43,6 +43,9 @@ define('ATTENDANCE_AUTOMARK_DISABLED', 0);
 define('ATTENDANCE_AUTOMARK_ALL', 1);
 define('ATTENDANCE_AUTOMARK_CLOSE', 2);
 
+// Max number of sessions available in the warnings set form to trigger warnings.
+define('ATTENDANCE_MAXWARNAFTER', 100);
+
 /**
  * Get statuses,
  *
@@ -534,6 +537,12 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
     $sesendtime = $formdata->sestime['endhour'] * HOURSECS + $formdata->sestime['endminute'] * MINSECS;
     $sessiondate = $formdata->sessiondate + $sesstarttime;
     $duration = $sesendtime - $sesstarttime;
+    if (empty(get_config('attendance', 'enablewarnings'))) {
+        $absenteereport = get_config('attendance', 'absenteereport_default');
+    } else {
+        $absenteereport = empty($formdata->absenteereport) ? 0 : 1;
+    }
+
     $now = time();
 
     if (empty(get_config('attendance', 'studentscanmark'))) {
@@ -573,6 +582,8 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
                     $sess->description = $formdata->sdescription['text'];
                     $sess->descriptionformat = $formdata->sdescription['format'];
                     $sess->timemodified = $now;
+                    $sess->absenteereport = $absenteereport;
+                    $sess->studentpassword = '';
                     if (isset($formdata->studentscanmark)) { // Students will be able to mark their own attendance.
                         $sess->studentscanmark = 1;
                         if (!empty($formdata->usedefaultsubnet)) {
@@ -581,14 +592,16 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
                             $sess->subnet = $formdata->subnet;
                         }
                         $sess->automark = $formdata->automark;
+                        if (isset($formdata->autoassignstatus)) {
+                            $sess->autoassignstatus = 1;
+                        }
                         $sess->automarkcompleted = 0;
                         if (!empty($formdata->randompassword)) {
                             $sess->studentpassword = attendance_random_string();
-                        } else {
+                        } else if (!empty($formdata->studentpassword)) {
                             $sess->studentpassword = $formdata->studentpassword;
                         }
                     } else {
-                        $sess->studentpassword = '';
                         $sess->subnet = '';
                         $sess->automark = 0;
                         $sess->automarkcompleted = 0;
@@ -612,14 +625,19 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         $sess->descriptionformat = $formdata->sdescription['format'];
         $sess->timemodified = $now;
         $sess->studentscanmark = 0;
+        $sess->autoassignstatus = 0;
         $sess->subnet = '';
         $sess->studentpassword = '';
         $sess->automark = 0;
         $sess->automarkcompleted = 0;
+        $sess->absenteereport = $absenteereport;
 
         if (isset($formdata->studentscanmark) && !empty($formdata->studentscanmark)) {
             // Students will be able to mark their own attendance.
             $sess->studentscanmark = 1;
+            if (isset($formdata->autoassignstatus) && !empty($formdata->autoassignstatus)) {
+                $sess->autoassignstatus = 1;
+            }
             if (!empty($formdata->randompassword)) {
                 $sess->studentpassword = attendance_random_string();
             } else if (!empty($formdata->studentpassword)) {
@@ -765,7 +783,7 @@ function attendance_get_users_to_notify($courseids = array(), $orderby = '', $al
                          GROUP BY attendanceid, setnumber) stm
                      ON (stm.setnumber = ats.statusset AND stm.attendanceid = ats.attendanceid)
                   {$joingroup}
-                  WHERE 1 = 1 {$where}
+                  WHERE ats.absenteereport = 1 {$where}
                 GROUP BY uniqueid, a.id, a.name, a.course, c.fullname, atl.studentid, n.id, n.warningpercent,
                          n.emailsubject, n.emailcontent, n.emailcontentformat, n.warnafter, n.maxwarn,
                          n.emailuser, n.thirdpartyemails, cm.id, c.id, {$unames2}, ns.userid
@@ -822,4 +840,55 @@ function attendance_template_variables($record) {
         $record->$field = preg_replace($patterns, $replacements, $record->$field);
     }
     return $record;
+}
+
+/**
+ * Find highest available status for a user.
+ *
+ * @param mod_attendance_structure $att attendance structure
+ * @param stdclass $attforsession attendance_session record.
+ * @return bool/int
+ */
+function attendance_session_get_highest_status(mod_attendance_structure $att, $attforsession) {
+    // Find the status to set here.
+    $statuses = $att->get_statuses();
+    $highestavailablegrade = 0;
+    $highestavailablestatus = new stdClass();
+    foreach ($statuses as $status) {
+        if ($status->studentavailability === '0') {
+            // This status is never available to students.
+            continue;
+        }
+        if (!empty($status->studentavailability)) {
+            $toolateforstatus = (($attforsession->sessdate + ($status->studentavailability * 60)) < time());
+            if ($toolateforstatus) {
+                continue;
+            }
+        }
+        // This status is available to the student.
+        if ($status->grade > $highestavailablegrade) {
+            // This is the most favourable grade so far; save it.
+            $highestavailablegrade = $status->grade;
+            $highestavailablestatus = $status;
+        }
+    }
+    if (empty($highestavailablestatus)) {
+        return false;
+    }
+    return $highestavailablestatus->id;
+}
+
+/**
+ * Get available automark options.
+ *
+ * @return array
+ */
+function attendance_get_automarkoptions() {
+    $options = array();
+    $options[ATTENDANCE_AUTOMARK_DISABLED] = get_string('noautomark', 'attendance');
+    if (strpos(get_config('tool_log', 'enabled_stores'), 'logstore_standard') !== false) {
+        $options[ATTENDANCE_AUTOMARK_ALL] = get_string('automarkall', 'attendance');
+    }
+    $options[ATTENDANCE_AUTOMARK_CLOSE] = get_string('automarkclose', 'attendance');
+    return $options;
 }

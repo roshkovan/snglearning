@@ -47,7 +47,8 @@ if (!attendance_can_student_mark($attforsession)) {
 
 // Check if subnet is set and if the user is in the allowed range.
 if (!empty($attforsession->subnet) && !address_in_subnet(getremoteaddr(), $attforsession->subnet)) {
-    notice(get_string('subnetwrong', 'attendance'));
+    $url = new moodle_url('/mod/attendance/view.php', array('id' => $cm->id));
+    notice(get_string('subnetwrong', 'attendance'), $url);
     exit; // Notice calls this anyway.
 }
 
@@ -56,6 +57,26 @@ $att = new mod_attendance_structure($attendance, $cm, $course, $PAGE->context, $
 
 // Require that a session key is passed to this page.
 require_sesskey();
+
+// Check to see if autoassignstatus is in use and no password required.
+if ($attforsession->autoassignstatus && empty($attforsession->studentpassword)) {
+    $statusid = attendance_session_get_highest_status($att, $attforsession);
+    $url = new moodle_url('/mod/attendance/view.php', array('id' => $cm->id));
+    if (empty($statusid)) {
+        print_error('attendance_no_status', 'mod_attendance', $url);
+    }
+    $take = new stdClass();
+    $take->status = $statusid;
+    $take->sessid = $attforsession->id;
+    $success = $att->take_from_student($take);
+
+    if ($success) {
+        // Redirect back to the view page.
+        redirect($url, get_string('studentmarked', 'attendance'));
+    } else {
+        print_error('attendance_already_submitted', 'mod_attendance', $url);
+    }
+}
 
 // Create the form.
 $mform = new mod_attendance_student_attendance_form(null,
@@ -75,16 +96,23 @@ if ($mform->is_cancelled()) {
         $url = new moodle_url('/mod/attendance/attendance.php', array('sessid' => $id, 'sesskey' => sesskey()));
         redirect($url, get_string('incorrectpassword', 'mod_attendance'), null, \core\output\notification::NOTIFY_ERROR);
     }
+    if ($attforsession->autoassignstatus) {
+        $fromform->status = attendance_session_get_highest_status($att, $attforsession);
+        if (empty($fromform->status)) {
+            $url = new moodle_url('/mod/attendance/view.php', array('id' => $cm->id));
+            print_error('attendance_no_status', 'mod_attendance', $url);
+        }
+    }
 
     if (!empty($fromform->status)) {
         $success = $att->take_from_student($fromform);
 
         $url = new moodle_url('/mod/attendance/view.php', array('id' => $cm->id));
         if ($success) {
-            // Redirect back to the view page for the block.
-            redirect($url);
+            // Redirect back to the view page.
+            redirect($url, get_string('studentmarked', 'attendance'));
         } else {
-            print_error ('attendance_already_submitted', 'mod_attendance', $url);
+            print_error('attendance_already_submitted', 'mod_attendance', $url);
         }
     }
 
@@ -101,3 +129,4 @@ $output = $PAGE->get_renderer('mod_attendance');
 echo $output->header();
 $mform->display();
 echo $output->footer();
+
