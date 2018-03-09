@@ -29,9 +29,9 @@ $string['activityoverview'] = 'You have upcoming bigbluebuttonbn sessions';
 $string['bbbduetimeoverstartingtime'] = 'The due time for this activity must be greater than the starting time';
 $string['bbbdurationwarning'] = 'The maximum duration for this session is %duration% minutes.';
 $string['bbbrecordwarning'] = 'This session may be recorded.';
-$string['bigbluebuttonbn:join'] = 'Join a meeting';
-$string['bigbluebuttonbn:managerecordings'] = 'Manage recordings';
-$string['bigbluebuttonbn:addinstance'] = 'Add a new meeting';
+$string['bigbluebuttonbn:addinstance'] = 'Add a new bigbluebuttonbn room/activity';
+$string['bigbluebuttonbn:join'] = 'Join a bigbluebuttonbn meeting';
+$string['bigbluebuttonbn:managerecordings'] = 'Manage bigbluebuttonbn recordings';
 $string['bigbluebuttonbn'] = 'BigBlueButton';
 
 $string['config_general'] = 'General configuration';
@@ -380,3 +380,4 @@ $string['email_footer_sent_from'] = 'from the course';
 $string['view_error_meeting_not_running'] = 'Something went wrong, the meeting is not running.';
 $string['view_error_current_state_not_found'] = 'Current state was not found. The recording may have been deleted or the BigBlueButton server is not compatible with the action performed.';
 $string['view_error_action_not_completed'] = 'Action could not be completed';
+$string['view_warning_default_server'] = 'This Moodle server is making use of the BigBlueButton testing server that comes pre-configured by default. It should be replaced for production.';

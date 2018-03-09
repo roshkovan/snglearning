@@ -1493,7 +1493,7 @@ function bigbluebuttonbn_get_recording_data_row_preview($recording) {
             $recordingpreview .= html_writer::start_tag('div', array('class' => 'row'));
             foreach ($playback['preview'] as $image) {
                 $recordingpreview .= html_writer::empty_tag('img',
-                    array('src' => trim($image['url']) . '?' . time(), 'class' => 'thumbnail col-sm'));
+                    array('src' => trim($image['url']) . '?' . time(), 'class' => 'recording-thumbnail col-sm'));
             }
             $recordingpreview .= html_writer::end_tag('div');
             $recordingpreview .= html_writer::tag('div',
@@ -1840,10 +1840,6 @@ function bigbluebuttonbn_get_recording_table_row($bbbsession, $recording, $rowda
  * @return boolean
  */
 function bigbluebuttonbn_include_recording_table_row($bbbsession, $recording) {
-    // Users with recording management priviledges can see all of them.
-    if ($bbbsession['managerecordings']) {
-        return true;
-    }
     // Exclude unpublished recordings.
     if ($recording['published'] != 'true') {
         return false;
@@ -1932,10 +1928,10 @@ function bigbluebuttonbn_output_recording_table($bbbsession, $recordings, $tools
     if (!isset($table) || !isset($table->data)) {
         // Render a table with "No recordings".
         return html_writer::div(get_string('view_message_norecordings', 'bigbluebuttonbn'), '',
-            array('id' => 'bigbluebuttonbn_html_table'));
+            array('id' => 'bigbluebuttonbn_recordings_table'));
     }
     // Render the table.
-    return html_writer::div(html_writer::table($table), '', array('id' => 'bigbluebuttonbn_html_table'));
+    return html_writer::div(html_writer::table($table), '', array('id' => 'bigbluebuttonbn_recordings_table'));
 }
 
 /**
