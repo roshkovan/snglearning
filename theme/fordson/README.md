@@ -23,7 +23,19 @@ Documentation can be found here: https://goo.gl/oUczeD
 # Install from Github
 Click on the button to "Clone or Download" https://github.com/dbnschools/moodle-theme_fordson . When downloaded to your computer, unzip it. It should create a folder named "moodle-theme_fordson-master". Rename the folder so that it is "fordson" (without quotes). You can FTP that folder to your moodle site in /moodle/theme/ directory. Or you can create a new ZIP file of the "fordson" folder and upload and install it via the Plugin Administration in Site Administration.
 
-## Fordson Moodle 34 version 1.7
+
+## Fordson Moodle 34 version 1.7 2018020300
+* Fixed tooltip displayed after click.
+* Fixed missing topnavbar button for Easy Enrollment code button.
+* Changed language string name for better translation support.
+* Added course completion report link in teacher dashboard.
+* Added Event Monitoring link in teacher dashboard.
+* A few tweaks to styling for Moodle blogging pages and posts.
+* Fixed completion box issue where manual and auto had the same checkbox which leads to confusion. Auto Completion now has a dashed box while manual completion is a solid box.
+* Added better styling support for Collapsed Topic Course Format.  Topic Title styling will now match colors of the theme and override Collapsible Topic settings.
+
+
+## Fordson Moodle 34 version 1.7 2018020200
 * New navigation options in top navbar: Nav Drawer, Site Admin, Course Management, Student Dashboard, Course Editing Button, My Courses dropdown, This Course dropdown, Easy Enrollment Course Codes (When plugin is activated).
 * Removed! -> Navdrawer Customizations have been removed.  We provided the ability to disable the nav drawer if needed and utilize our new topnav bar menus.  To customize the navdrawer please use this plugin:  https://moodle.org/plugins/local_boostnavigation and this plugin to add new menu items:  https://github.com/cescobedo/moodle-local_navigation .  Moving forward for sustainability and less issues we thought it best to remove these.  
 A future version of Fordson may open up new possibilities to fully customize what appears in the nav drawer such as profile info, custom textbox, course nav, site nav, and other ideas we have to more fully utilize and provide valuable information to users.  The first step was removing added functionality not in core which is what we have done in this release.

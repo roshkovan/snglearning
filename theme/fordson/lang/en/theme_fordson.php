@@ -44,7 +44,7 @@ $string['region-fp-b'] = 'Column B';
 $string['region-fp-c'] = 'Column C';
 $string['showblockregions'] = 'Show Additional Frontpage Block Regions';
 $string['showblockregions_desc'] = 'Turn on three more block regions on the site frontpage.  These appear just below the icon navigation bar.';
-
+$string['viewsectionmodules'] = 'View Section Modules';
 
 // Presets Settings.
 $string['presets_settings'] = 'Presets';
@@ -254,6 +254,10 @@ $string['gutterwidth'] = 'Content Padding';
 $string['gutterwidth_desc'] = 'This setting controls how much spacing is used on the left and right of the main content.';
 $string['frontpagemycoursessorting'] = 'Frontpage My Courses Sort Order by Last Access';
 $string['frontpagemycoursessorting_desc'] = 'When checked this feature will sort the frontpage My Courses(enrolled courses) display by last access for the user.  This will override the "Sort my courses" setting under Navigation.  If unchecked then Frontpage My Courses will display as normal.';
+$string['headingfont'] = 'Heading Font Chooser';
+$string['headingfont_desc'] = 'Choose a Google Font to be used for all headings.';
+$string['pagefont'] = 'Page Font Chooser';
+$string['pagefont_desc'] = 'Choose a font for page text.';
 
 //teacher and student dashboard slider
 $string['userlinks'] = 'User Links';
@@ -320,7 +324,7 @@ $string['myunits'] = 'My Units';
 $string['mymodules'] = 'My Modules';
 $string['myclasses'] = 'My Classes';
 $string['mytraining'] = 'My Training';
-$string['mypd'] = 'My PD';
+$string['myprofessionaldevelopment'] = 'My PD';
 $string['mycred'] = 'My Credentials';
 $string['myplans'] = 'My Plans';
 $string['mycomp'] = 'My Competencies';
@@ -333,7 +337,7 @@ $string['homemyunits'] = 'Unit Home';
 $string['homemymodules'] = 'Module Home';
 $string['homemyclasses'] = 'Class Home';
 $string['homemytraining'] = 'Training Home';
-$string['homemypd'] = 'PD Home';
+$string['homemyprofessionaldevelopment'] = 'PD Home';
 $string['homemycred'] = 'Credential Home';
 $string['homemyplans'] = 'Plan Home';
 $string['homemycomp'] = 'Competency Home';
@@ -346,7 +350,7 @@ $string['thismyunits'] = 'This Unit';
 $string['thismymodules'] = 'This Module';
 $string['thismyclasses'] = 'This Class';
 $string['thismytraining'] = 'This Training';
-$string['thismypd'] = 'This PD';
+$string['thismyprofessionaldevelopment'] = 'This PD';
 $string['thismycred'] = 'This Credential';
 $string['thismyplans'] = 'This Plan';
 $string['thismycomp'] = 'This Competency';
