@@ -233,7 +233,7 @@ function user_get_users_by_id($userids) {
  * @return array of user fields
  */
 function user_get_default_fields() {
-    return array( 'id', 'username', 'fullname', 'firstname', 'lastname', 'email',
+    return array( 'id', 'username', 'fullname', 'middlename', 'firstname', 'lastname', 'email',
         'address', 'phone1', 'phone2', 'icq', 'skype', 'yahoo', 'aim', 'msn', 'department',
         'institution', 'interests', 'firstaccess', 'lastaccess', 'auth', 'confirmed',
         'idnumber', 'lang', 'theme', 'timezone', 'mailformat', 'description', 'descriptionformat',
