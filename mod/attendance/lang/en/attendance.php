@@ -224,6 +224,7 @@ $string['hiddensessions_help'] = 'Sessions are hidden if they are scheduled befo
 
 You can use this feature to hide older sessions instead of deleting them. Only visible sessions will appear in the Gradebook.';
 $string['hiddensessionsdeleted'] = 'All hidden sessions were delete';
+$string['hideextrauserdetails'] = 'Hide extra user details';
 $string['hidensessiondetails'] = 'Hide session details';
 $string['import'] = 'Import';
 $string['importfile'] = 'Import file';
@@ -271,6 +272,7 @@ $string['mustselectusers'] = 'Must select users to export';
 $string['newdate'] = 'New date';
 $string['newduration'] = 'New duration';
 $string['newstatusset'] = 'New set of statuses';
+$string['noabsentstatusset'] = 'The status set in use does not have a status to use when not marked.';
 $string['noattendanceusers'] = 'It is not possible to export any data as there are no students enrolled in the course.';
 $string['noautomark'] = 'Disabled';
 $string['noattforuser'] = 'No attendance records exist for the user';
@@ -418,7 +420,10 @@ $string['setunmarked'] = 'Automatically set when not marked';
 $string['setunmarked_help'] = 'If enabled in the session, set this status if a student has not marked their own attendance.';
 $string['showdefaults'] = 'Show defaults';
 $string['showduration'] = 'Show duration';
+$string['showextrauserdetails'] = 'Show extra user details';
 $string['showsessiondetails'] = 'Show session details';
+$string['showsessiondescriptiononreport'] = 'Show session description in report';
+$string['showsessiondescriptiononreport_desc'] = 'Show the session description in the attendance report listing.';
 $string['somedisabledstatus'] = '(Some options have been removed as the session has started.)';
 $string['sortedgrid'] = 'Sorted grid';
 $string['sortedlist'] = 'Sorted list';
