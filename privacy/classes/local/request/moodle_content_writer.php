@@ -84,7 +84,7 @@ class moodle_content_writer implements content_writer {
     public function export_data(array $subcontext, \stdClass $data) : content_writer {
         $path = $this->get_path($subcontext, 'data.json');
 
-        $this->write_data($path, json_encode($data, JSON_UNESCAPED_UNICODE));
+        $this->write_data($path, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
         return $this;
     }
@@ -115,7 +115,7 @@ class moodle_content_writer implements content_writer {
         ];
 
         $path = $this->get_path($subcontext, 'metadata.json');
-        $this->write_data($path, json_encode($data, JSON_UNESCAPED_UNICODE));
+        $this->write_data($path, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
         return $this;
     }
@@ -131,7 +131,7 @@ class moodle_content_writer implements content_writer {
     public function export_related_data(array $subcontext, $name, $data) : content_writer {
         $path = $this->get_path($subcontext, "{$name}.json");
 
-        $this->write_data($path, json_encode($data, JSON_UNESCAPED_UNICODE));
+        $this->write_data($path, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
         return $this;
     }
@@ -230,7 +230,7 @@ class moodle_content_writer implements content_writer {
             'value' => $value,
             'description' => $description,
         ];
-        $this->write_data($path, json_encode($data, JSON_UNESCAPED_UNICODE));
+        $this->write_data($path, json_encode($data, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 
         return $this;
     }
@@ -244,7 +244,9 @@ class moodle_content_writer implements content_writer {
         $path = [];
         $contexts = array_reverse($this->context->get_parent_contexts(true));
         foreach ($contexts as $context) {
-            $path[] = clean_param($context->get_context_name(), PARAM_FILE);
+            $name = $context->get_context_name();
+            $id = $context->id;
+            $path[] = shorten_filename(clean_param("{$name} {$id}", PARAM_FILE), MAX_FILENAME_SIZE, true);
         }
 
         return $path;
@@ -258,6 +260,9 @@ class moodle_content_writer implements content_writer {
      * @return  string                      The fully-qualfiied file path.
      */
     protected function get_path(array $subcontext, string $name) : string {
+        $subcontext = shorten_filenames($subcontext, MAX_FILENAME_SIZE, true);
+        $name = shorten_filename($name, MAX_FILENAME_SIZE, true);
+
         // Combine the context path, and the subcontext data.
         $path = array_merge(
             $this->get_context_path(),
