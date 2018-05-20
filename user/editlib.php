@@ -440,7 +440,7 @@ function useredit_get_required_name_fields() {
     $nameformat = $CFG->fullnamedisplay;
 
     // Names that are required fields on user forms.
-    $necessarynames = array('firstname', 'lastname');
+    $necessarynames = array('firstname', 'middlename', 'lastname');
     $languageformat = get_string('fullnamedisplay');
 
     // Check that the language string and the $nameformat contain the necessary names.
@@ -470,7 +470,7 @@ function useredit_get_enabled_name_fields() {
     global $CFG;
 
     // Get all of the other name fields which are not ranked as necessary.
-    $additionalusernamefields = array_diff(get_all_user_name_fields(), array('firstname', 'lastname'));
+    $additionalusernamefields = array_diff(get_all_user_name_fields(), array('firstname', 'middlename', 'lastname'));
     // Find out which additional name fields are actually being used from the fullnamedisplay setting.
     $enabledadditionalusernames = array();
     foreach ($additionalusernamefields as $enabledname) {
@@ -498,6 +498,6 @@ function useredit_get_disabled_name_fields($enabledadditionalusernames = null) {
 
     // These are the additional fields that are not currently enabled.
     $nonusednamefields = array_diff(get_all_user_name_fields(),
-            array_merge(array('firstname', 'lastname'), $enabledadditionalusernames));
+            array_merge(array('firstname', 'middlename', 'lastname'), $enabledadditionalusernames));
     return $nonusednamefields;
 }
