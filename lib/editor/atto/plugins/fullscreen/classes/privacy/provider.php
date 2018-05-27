@@ -15,16 +15,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Glossary module version information
+ * Privacy Subsystem implementation for atto_fullscreen.
  *
- * @package mod_glossary
- * @copyright  2011 onwards Eloy Lafuente (stronk7) {@link http://stronk7.com}
+ * @package    atto_fullscreen
+ * @copyright  2018 Daniel Thies <dethies@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace atto_fullscreen\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018051401;       // The current module version (Date: YYYYMMDDXX)
-$plugin->requires  = 2018050800;    // Requires this Moodle version
-$plugin->component = 'mod_glossary';   // Full name of the plugin (used for diagnostics)
-$plugin->cron      = 0;
+/**
+ * Privacy Subsystem for atto_fullscreen implementing null_provider.
+ *
+ * @copyright   2018 Daniel Thies <dethies@gmail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    use \core_privacy\local\legacy_polyfill;
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function _get_reason() {
+        return 'privacy:metadata';
+    }
+}
