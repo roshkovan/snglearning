@@ -15,20 +15,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Atto text editor integration version file.
+ * Privacy Subsystem implementation for atto_cloze.
  *
- * @package    atto_morefontcolors
- * @copyright  2014-2015 Université de Lausanne
- * @author     Nicolas Dunand <nicolas.dunand@unil.ch>
- * @author     Rossiani Wijaya  <rwijaya@moodle.com>
+ * @package    atto_cloze
+ * @copyright  2018 Daniel Thies <dethies@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace atto_cloze\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2018050201;
-$plugin->requires  = 2014050800;
-$plugin->component = 'atto_morefontcolors';
-$plugin->maturity = MATURITY_STABLE;
-$plugin->release = '1.2.8 for Moodle 2.7-3.5 (build 2018050201)';
+/**
+ * Privacy Subsystem for atto_cloze implementing null_provider.
+ *
+ * @copyright   2018 Daniel Thies <dethies@gmail.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
 
+    use \core_privacy\local\legacy_polyfill;
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function _get_reason() {
+        return 'privacy:metadata';
+    }
+}
