@@ -14,19 +14,33 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
-
 /**
- * Completion Progress block version details
+ * Privacy information for administration tool upload enrolment methods- no user data stored.
  *
- * @package    block_completion_progress
- * @copyright  2018 Michael de Raadt
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package     atto_wordimport
+ * @copyright   2018 Eoin Campbell
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die;
+namespace atto_wordimport\privacy;
 
-$plugin->version   = 2018060700;
-$plugin->requires  = 2014111100; // Moodle 2.8.
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = 'Version for Moodle 2.8 onwards';
-$plugin->component = 'block_completion_progress';
+defined('MOODLE_INTERNAL') || die();
+
+/**
+ * Privacy Subsystem for atto_wordimport implementing null_provider.
+ *
+ * @copyright   2018 Eoin Campbell
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    /**
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
+     *
+     * @return  string
+     */
+    public static function get_reason() : string {
+        return 'privacy:metadata';
+    }
+}
