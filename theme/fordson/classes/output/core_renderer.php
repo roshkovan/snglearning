@@ -1022,7 +1022,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 'type' => 'easy'
             ));
         }
-        $gradestitle = get_string('gradebooksetup', 'grades');
+        $gradestitle = get_string('gradebook', 'grades');
         $gradeslink = new moodle_url('/grade/report/grader/index.php', array(
             'id' => $PAGE->course->id
         ));
