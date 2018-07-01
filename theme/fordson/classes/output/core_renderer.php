@@ -947,7 +947,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $editcog = html_writer::div($this->context_header_settings_menu() , 'pull-xs-right context-header-settings-menu');
         $siteadmintitle = get_string('siteadminquicklink', 'theme_fordson');
         $siteadminurl = new moodle_url('/admin/search.php');
-	$hasadminlink = has_capability('moodle/user:create', $context); //$hasadminlink = is_siteadmin();
+        $hasadminlink = has_capability('moodle/user:create', $context); #$hasadminlink = is_siteadmin();
         $course = $this->page->course;
         // Send to template.
         $dashmenu = ['showincourseonly' => $showincourseonly, 'togglebutton' => $togglebutton, 'togglebuttonstudent' => $togglebuttonstudent, 'hasteacherdash' => $hasteacherdash, 'hasstudentdash' => $hasstudentdash, 'haspermission' => $haspermission, 'hasadminlink' => $hasadminlink, 'siteadmintitle' => $siteadmintitle, 'siteadminurl' => $siteadminurl, 'haseditcog' => $haseditcog, 'editcog' => $editcog, ];

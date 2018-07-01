@@ -91,6 +91,8 @@ $string['bodybackground'] = 'Body Background Colour';
 $string['bodybackground_desc'] = 'The main colour to use for the background.';
 $string['footerbkg'] = 'Footer Background Colour';
 $string['footerbkg_desc'] = 'Footer background colour for the bottom of the page.';
+$string['topnavbarbg'] = 'Top Navigation Navbar';
+$string['topnavbarbg_desc'] = 'Content background colour for the top navigation bar.';
 
 $string['rawscss'] = 'Raw SCSS';
 $string['rawscss_desc'] = 'Use this field to provide SCSS code which will be injected at the end of the style sheet.';
@@ -178,7 +180,7 @@ $string['blogdesc'] = 'Enter the URL of your institution blog. (i.e http://dearb
 $string['sociallink'] = 'Custom Social Link';
 $string['sociallinkdesc'] = 'Enter the URL of your your custom social media link. (i.e http://dearbornschools.org)';
 $string['sociallinkicon'] = 'Link Icon';
-$string['sociallinkicondesc'] = 'Enter the fontawesome name of the icon for your link<br />A full list of FontAwesome icons can be found at http://fontawesome.io/icons/';
+$string['sociallinkicondesc'] = 'Enter the fontawesome name of the icon for your link<br />A full list of FontAwesome icons can be found at https://fontawesome.com/v4.7.0/icons/';
 
 // Content settings.
 $string['coursetileinfo'] = 'Course Display Options';
@@ -419,8 +421,8 @@ $string['iconwidth'] = 'Homepage Icon Width';
 $string['iconwidth_desc'] = 'Width of the 8 individual icons in the icon navigation bar on the homepage.';
 
 $string['navicon'] = 'Icon';
-$string['navicondesc'] = 'Name of the icon you wish to use. List is <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_new">here</a>.  Just enter what is after "fa-", e.g. "star".';
-$string['naviconslidedesc'] = 'Suggested icon text: arrow-circle-down . Or choose from the list is <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_new">here</a>.  Just enter what is after "fa-", e.g. "star".';
+$string['navicondesc'] = 'Name of the icon you wish to use. List is <a href="https://fontawesome.com/v4.7.0/icons/" target="_new">here</a>.  Just enter what is after "fa-", e.g. "star".';
+$string['naviconslidedesc'] = 'Suggested icon text: arrow-circle-down . Or choose from the list is <a href="https://fontawesome.com/v4.7.0/icons/" target="_new">here</a>.  Just enter what is after "fa-", e.g. "star".';
 
 $string['naviconbuttontext'] = 'Link Text';
 $string['naviconbuttontextdesc'] = 'Text to appear below the icon.';
@@ -453,7 +455,7 @@ $string['marketing6'] = 'Marketing Spot six';
 $string['marketingtitle'] = 'Title';
 $string['marketingtitledesc'] = 'Title to show in this marketing spot.  You must include a title in order for the Marketing Tile to appear.';
 $string['marketingicon'] = 'Link Icon';
-$string['marketingicondesc'] = 'Name of the icon you wish to use in the marketing URL Button. List is <a href="http://fortawesome.github.io/Font-Awesome/cheatsheet/" target="_new">here</a>.  Just enter what is after "fa-", e.g. "star".';
+$string['marketingicondesc'] = 'Name of the icon you wish to use in the marketing URL Button. List is <a href="https://fontawesome.com/v4.7.0/icons/" target="_new">here</a>.  Just enter what is after "fa-", e.g. "star".';
 $string['marketingimage'] = 'Image';
 $string['marketingimage_desc'] = 'This provides the option of displaying an image in the marketing spot';
 $string['marketingcontent'] = 'Content';
