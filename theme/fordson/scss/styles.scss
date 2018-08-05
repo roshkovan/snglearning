@@ -245,6 +245,7 @@ div#blockslider {
 .blockpanelbtn {
     position: absolute;
     right: 0;
+    top: 0;
     z-index: 2;
 }
 .blockpanelbtn .btn:focus, .blockpanelbtn .btn-primary:focus {
@@ -794,6 +795,10 @@ ul.teacherscourseview {
     display: inline-block;
 }
 
+.enrolmenticons {
+    float: right;
+}
+
 .course-content ul.topics li.section .left, .course-content ul.topics li.section .right {
     width: auto;
     padding: 0;
@@ -924,6 +929,27 @@ width: $activityiconsize;
 .progress_bar_completed {
     background-color: $primary;
     text-align: right;
+}
+
+.mycoursecompletion {
+    float: left;
+    padding-right: 1rem;
+}
+
+.mycoursecompletiontile2 .progress-doughnut {
+    background-color: #fff;
+}
+.mycoursecompletiontile4 .progress-doughnut {
+    background-color: #fff;
+}
+.mycoursecompletiontile2 {
+    padding-left: .5rem;
+    padding-top: .5rem;
+}
+
+.mycoursecompletiontile4 {
+    padding-left: .5rem;
+    padding-top: .5rem;
 }
 
 //Dashboard no progress icon centered fix
@@ -1060,4 +1086,11 @@ div#page.container-fluid {
     .breadcrumb {
         background-color:transparent !important;
     }
+}
+
+/**
+* Collapsed Topic Format Fixes
+**/
+ul.ctopics {
+    width: 100%;
 }
