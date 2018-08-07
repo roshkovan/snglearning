@@ -189,7 +189,7 @@ $string['textcontentinfo'] = 'Custom Content';
 $string['textcontentinfodesc'] = 'Use the textboxes below to add a customized information for users.';
 $string['generalcontentinfo'] = 'General Content Display Settings';
 $string['generalcontentinfodesc'] = 'The options below help you customize the way content is displayed and turn on additional features for Fordson.';
-$string['enrollcoursecard'] = 'Enroll';
+$string['enrollcoursecard'] = 'Access';
 $string['layoutinfo'] = 'Layout Settings';
 $string['layoutinfodesc'] = 'Control page layout by chooseing a design.';
 
@@ -250,7 +250,8 @@ $string['coursestyle5'] = 'Horizontal Style One';
 $string['coursestyle6'] = 'Horizontal Image Background Full Details';
 $string['coursestyle7'] = 'Horizontal Image Background Title & Teacher Only';
 $string['coursestyle8'] = 'Horizontal Two Column';
-$string['coursestyle9'] = 'Default Moodle Course Display';
+$string['coursestyle9'] = 'Corporate Training - minimal with completion progressbar';
+$string['coursestyle10'] = 'Default Moodle Course Display';
 $string['coursetilestyle'] = 'Course Tile Display';
 $string['coursetilestyle_desc'] = 'When viewing course categories you can choose from the following styles to display courses. <a href="https://goo.gl/fMXzSo" target="_new">Instructions for Fordson 3.5 Theme</a>';
 $string['gutterwidth'] = 'Content Padding';

@@ -550,10 +550,10 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $context = $this->page->context;
         $hascreateicon = (empty($PAGE->theme->settings->createicon && isloggedin() && has_capability('moodle/course:create', $context))) ? false : $PAGE->theme->settings->createicon;
         $createbuttonurl = (empty($PAGE->theme->settings->createbuttonurl)) ? false : $PAGE->theme->settings->createbuttonurl;
-        $createbuttontext = (empty($PAGE->theme->settings->createbuttontext)) ? false : format_text($PAGE->theme->settings->createbuttontext);
+        $createbuttontext = (empty($PAGE->theme->settings->createbuttontext)) ? false : format_string($PAGE->theme->settings->createbuttontext);
         $hasslideicon = (empty($PAGE->theme->settings->slideicon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->slideicon;
         $slideiconbuttonurl = 'data-toggle="collapse" data-target="#collapseExample';
-        $slideiconbuttontext = (empty($PAGE->theme->settings->slideiconbuttontext)) ? false : format_text($PAGE->theme->settings->slideiconbuttontext);
+        $slideiconbuttontext = (empty($PAGE->theme->settings->slideiconbuttontext)) ? false : format_string($PAGE->theme->settings->slideiconbuttontext);
         $hasnav1icon = (empty($PAGE->theme->settings->nav1icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav1icon;
         $hasnav2icon = (empty($PAGE->theme->settings->nav2icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav2icon;
         $hasnav3icon = (empty($PAGE->theme->settings->nav3icon && isloggedin() && !isguestuser())) ? false : $PAGE->theme->settings->nav3icon;
@@ -975,7 +975,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         return $this->render_from_template('theme_fordson/teacherdashmenu', $dashmenu);
     }
     public function teacherdash() {
-        global $PAGE, $COURSE, $CFG, $DB, $OUTPUT;
+        global $PAGE, $COURSE, $CFG, $DB, $OUTPUT, $USER;
         require_once ($CFG->dirroot . '/completion/classes/progress.php');
         $togglebutton = '';
         $togglebuttonstudent = '';
@@ -1186,7 +1186,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         if ($role) {
             $context = context_course::instance($PAGE->course->id);
             $teachers = get_role_users($role->id, $context, false, 'u.id, u.firstname, u.middlename, u.lastname, u.alternatename,
-                    u.firstnamephonetic, u.lastnamephonetic, u.email, u.picture,
+                    u.firstnamephonetic, u.lastnamephonetic, u.email, u.picture, u.maildisplay,
                     u.imagealt');
             foreach ($teachers as $staff) {
                 $picture = $OUTPUT->user_picture($staff, array(
@@ -1201,10 +1201,12 @@ class core_renderer extends \theme_boost\output\core_renderer {
                     'email' => $staff->email,
                     'picture' => $picture,
                     'messaging' => $messaging,
-                    'hasmessaging' => $hasmessaging
+                    'hasmessaging' => $hasmessaging,
+                    'hasemail' => $staff->maildisplay
                 );
             }
         }
+
         // If you created custom roles, please change the shortname value to match the name of your role.  This is non-editing teacher.
         $role = $DB->get_record('role', array(
             'shortname' => 'teacher'
@@ -1212,7 +1214,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         if ($role) {
             $context = context_course::instance($PAGE->course->id);
             $teachers = get_role_users($role->id, $context, false, 'u.id, u.firstname, u.middlename, u.lastname, u.alternatename,
-                    u.firstnamephonetic, u.lastnamephonetic, u.email, u.picture,
+                    u.firstnamephonetic, u.lastnamephonetic, u.email, u.picture, u.maildisplay,
                     u.imagealt');
             foreach ($teachers as $staff) {
                 $picture = $OUTPUT->user_picture($staff, array(
@@ -1227,7 +1229,8 @@ class core_renderer extends \theme_boost\output\core_renderer {
                     'email' => $staff->email,
                     'picture' => $picture,
                     'messaging' => $messaging,
-                    'hasmessaging' => $hasmessaging
+                    'hasmessaging' => $hasmessaging,
+                    'hasemail' => $staff->maildisplay
                 );
             }
         }
