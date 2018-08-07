@@ -21,6 +21,15 @@ Click on the button to "Clone or Download" https://github.com/dbnschools/moodle-
 
 
 # Versions and Updates
+## Moodle 3.5 Fordson v3.5 release 3 update 5
+* NEW style preset: Spectrum-Achromatic.  A modern style with muted colors except where it matters.  Perfect for a clean, modern, and relevant look to your Moodle site. 
+* Fixed icon navbar tooltip showing link instead of text.
+* New Corporate Training My Courses Display.  Lists name of course, teacher, and percent complete in a bar graph.  Concise and compact.
+* Fixed breadcrumb issue with default Boost layout.  Also made some styling tweaks to make default Boost layout more appealing within the Fordson theme and all of its features.
+* Fixes and enhancements to the Pulse Preset to better work with Fordson.
+* Course Tile Style One has been updated to be distinct from Tile 4.  Previously they looked the same but tile 4 had course summary.  Course tile one is clean and modern looking.  A perfect compliment to the new Spectrum-Achromatic preset style.
+
+
 ## Moodle 3.5 Fordson v3.5 release 3 update 4
 * Added Enrollment Icons for course listing pages.  This shows you if the course requires a password or enrollment key.
 * Added category context display for courses on listing pages and search pages.  This shows you what category the course is located.
