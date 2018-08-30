@@ -960,7 +960,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
         $editcog = html_writer::div($this->context_header_settings_menu() , 'pull-xs-right context-header-settings-menu');
         $siteadmintitle = get_string('siteadminquicklink', 'theme_fordson');
         $siteadminurl = new moodle_url('/admin/search.php');
-        $hasadminlink = is_siteadmin();
+        $hasadminlink = has_capability('moodle/user:create', $context);
         $course = $this->page->course;
         // Send to template.
         $dashmenu = ['showincourseonly' => $showincourseonly, 'togglebutton' => $togglebutton, 'togglebuttonstudent' => $togglebuttonstudent, 'hasteacherdash' => $hasteacherdash, 'hasstudentdash' => $hasstudentdash, 'haspermission' => $haspermission, 'hasadminlink' => $hasadminlink, 'siteadmintitle' => $siteadmintitle, 'siteadminurl' => $siteadminurl, 'haseditcog' => $haseditcog, 'editcog' => $editcog, ];
@@ -1035,8 +1035,8 @@ class core_renderer extends \theme_boost\output\core_renderer {
                 'type' => 'easy'
             ));
         }
-        $gradestitle = get_string('gradebooksetup', 'grades');
-        $gradeslink = new moodle_url('/grade/edit/tree/index.php', array(
+        $gradestitle = get_string('gradebook', 'grades');
+        $gradeslink = new moodle_url('/grade/report/grader/index.php', array(
             'id' => $PAGE->course->id
         ));
         $participantstitle = ($PAGE->theme->settings->studentdashboardtextbox == 1) ? false : get_string('participants', 'moodle');
@@ -1409,7 +1409,7 @@ class core_renderer extends \theme_boost\output\core_renderer {
     }
     public function brandorganization_footer() {
         $theme = theme_config::load('fordson');
-        $setting = $theme->settings->brandorganization;
+        $setting = format_string($theme->settings->brandorganization);
         return $setting != '' ? $setting : '';
     }
     public function brandwebsite_footer() {
