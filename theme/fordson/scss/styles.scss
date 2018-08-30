@@ -237,6 +237,7 @@ div#blockslider {
     background-color: $gray-200;
     border: 1px solid $gray-400;
     padding: 1rem;
+    position: relative;
 }
 .blockpanelbtn {
     position: absolute;
@@ -247,6 +248,12 @@ div#blockslider {
 .blockpanelbtn .btn:focus, .blockpanelbtn .btn-primary:focus {
     outline: 0;
     box-shadow: none !important;
+}
+
+button#blocksliderbuttonclose {
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 /* Footer */
@@ -828,6 +835,10 @@ ul.teacherscourseview {
     border: 1px solid $gray-300;
 }
 
+#page-header .singlebutton {
+    z-index: 1;
+}
+
 .dashtitle {
     padding-top: .5rem;
 }
@@ -955,24 +966,6 @@ width: $activityiconsize;
     opacity: 1;
 }
 
-// Progress bar fixes
-
-.progress {
-    height: 1rem;
-    width: 100%;
-    position: relative;
-}
-
-.progress_bar {
-    background-color: $gray-100;
-    text-align: center;
-}
-
-.progress_bar_completed {
-    background-color: $primary;
-    text-align: right;
-}
-
 .mycoursecompletion {
     float: left;
     padding-right: 1rem;
@@ -1000,10 +993,6 @@ width: $activityiconsize;
     color: initial;
 }
 
-.progress-bar.progress-bar-info.barfill {
-    z-index: 2;
-}
-
 
 //Dashboard no progress icon centered fix
 
@@ -1015,9 +1004,26 @@ width: $activityiconsize;
 /**
 * Responsive Fixes
 **/
+
 div#page.container-fluid {
     padding: 0 $gutterwidth;
 }
+
+@if $gutterwidth == 0rem {
+    .row {
+        margin-right: $gutterwidth; 
+        margin-left: $gutterwidth;
+    }
+    .col-12 {
+        padding-right: $gutterwidth;
+        padding-left: $gutterwidth;
+    }
+    #page-wrapper {
+        padding-bottom: $gutterwidth;
+    }
+    
+}
+
 @media screen and (max-width: 576px) {
     div#nav-message-popover-container {display: none;}
     div#nav-notification-popover-container {display: none;}
