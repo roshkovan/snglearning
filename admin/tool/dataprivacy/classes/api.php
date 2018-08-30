@@ -76,7 +76,7 @@ class api {
     /** The request is now being processed. */
     const DATAREQUEST_STATUS_PROCESSING = 4;
 
-    /** Data request completed. */
+    /** Information/other request completed. */
     const DATAREQUEST_STATUS_COMPLETE = 5;
 
     /** Data request cancelled by the user. */
@@ -84,6 +84,15 @@ class api {
 
     /** Data request rejected by the DPO. */
     const DATAREQUEST_STATUS_REJECTED = 7;
+
+    /** Data request download ready. */
+    const DATAREQUEST_STATUS_DOWNLOAD_READY = 8;
+
+    /** Data request expired. */
+    const DATAREQUEST_STATUS_EXPIRED = 9;
+
+    /** Data delete request completed, account is removed. */
+    const DATAREQUEST_STATUS_DELETED = 10;
 
     /**
      * Determines whether the user can contact the site's Data Protection Officer via Moodle.
@@ -125,6 +134,25 @@ class api {
         }
 
         require_capability('tool/dataprivacy:managedataregistry', $context);
+    }
+
+    /**
+     * Fetches the role shortnames of Data Protection Officer roles.
+     *
+     * @return array An array of the DPO role shortnames
+     */
+    public static function get_dpo_role_names() : array {
+        global $DB;
+
+        $dporoleids = explode(',', str_replace(' ', '', get_config('tool_dataprivacy', 'dporoles')));
+        $dponames = array();
+
+        if (!empty($dporoleids)) {
+            list($insql, $inparams) = $DB->get_in_or_equal($dporoleids);
+            $dponames = $DB->get_fieldset_select('role', 'shortname', "id {$insql}", $inparams);
+        }
+
+        return $dponames;
     }
 
     /**
@@ -300,6 +328,18 @@ class api {
             }
         }
 
+        // If any are due to expire, expire them and re-fetch updated data.
+        if (empty($statuses)
+                || in_array(self::DATAREQUEST_STATUS_DOWNLOAD_READY, $statuses)
+                || in_array(self::DATAREQUEST_STATUS_EXPIRED, $statuses)) {
+            $expiredrequests = data_request::get_expired_requests($userid);
+
+            if (!empty($expiredrequests)) {
+                data_request::expire($expiredrequests);
+                $results = self::get_data_requests($userid, $statuses, $types, $sort, $offset, $limit);
+            }
+        }
+
         return $results;
     }
 
@@ -381,6 +421,9 @@ class api {
             self::DATAREQUEST_STATUS_COMPLETE,
             self::DATAREQUEST_STATUS_CANCELLED,
             self::DATAREQUEST_STATUS_REJECTED,
+            self::DATAREQUEST_STATUS_DOWNLOAD_READY,
+            self::DATAREQUEST_STATUS_EXPIRED,
+            self::DATAREQUEST_STATUS_DELETED,
         ];
         list($insql, $inparams) = $DB->get_in_or_equal($nonpendingstatuses, SQL_PARAMS_NAMED);
         $select = 'type = :type AND userid = :userid AND status NOT ' . $insql;
@@ -404,6 +447,9 @@ class api {
             self::DATAREQUEST_STATUS_COMPLETE,
             self::DATAREQUEST_STATUS_CANCELLED,
             self::DATAREQUEST_STATUS_REJECTED,
+            self::DATAREQUEST_STATUS_DOWNLOAD_READY,
+            self::DATAREQUEST_STATUS_EXPIRED,
+            self::DATAREQUEST_STATUS_DELETED,
         ];
 
         return !in_array($status, $finalstatuses);
