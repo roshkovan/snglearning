@@ -15,17 +15,34 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Plugin meta-data
+ * Defines {@link \mod_subcourse\privacy\provider} class.
  *
  * @package     mod_subcourse
- * @copyright   2008 David Mudrak <david@moodle.com>
+ * @category    privacy
+ * @copyright   2018 David Mudrák <david@moodle.com>
  * @license     http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace mod_subcourse\privacy;
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'mod_subcourse';
-$plugin->release = '7.0.0';
-$plugin->maturity = MATURITY_STABLE;
-$plugin->version = 2018081500;
-$plugin->requires = 2017051500;
+/**
+ * Privacy API implementation for the Subcourse plugin.
+ *
+ * @copyright  2018 David Mudrák <david@moodle.com>
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+class provider implements \core_privacy\local\metadata\null_provider {
+
+    use \core_privacy\local\legacy_polyfill;
+
+    /**
+     * Returns stringid of a text explaining that this plugin stores no personal data.
+     *
+     * @return string
+     */
+    public static function _get_reason() {
+        return 'privacy:metadata';
+    }
+}
