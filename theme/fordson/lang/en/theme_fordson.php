@@ -198,7 +198,7 @@ $string['layoutinfo'] = 'Layout Settings';
 $string['layoutinfodesc'] = 'Control page layout by chooseing a design.';
 
 $string['pagelayout'] = 'Layout Chooser';
-$string['pagelayout_desc'] = 'Choose from the following layouts.  <a href="https://goo.gl/fMXzSo" target="_new">Instructions for Fordson 3.5 Theme</a>';
+$string['pagelayout_desc'] = 'Choose from the following layouts. Certain page layouts require additional adjustments on the Preset Adjustments Page.  Be sure to pay attention to: Learning Content Spacing, Header Image Height, and Content Padding as these will help adjust header image placement and padding to the left and right of the main learning content. <a href="https://goo.gl/fMXzSo" target="_new">Instructions for Fordson 3.5 Theme</a>';
 $string['pagelayout1'] = 'Default Boost Layout';
 $string['pagelayout2'] = 'Full-Width / Top Header Image';
 $string['pagelayout3'] = 'Centered Content / Overlapping Top Header Image';
@@ -215,6 +215,13 @@ $string['sectionlayout5'] = 'Simple Box';
 $string['sectionlayout6'] = 'Highlighted Section Title';
 $string['sectionlayout7'] = 'University Learner';
 $string['sectionlayout8'] = 'Corporate Learner';
+
+$string['marketingstyle'] = 'Marketing Tile Style Chooser';
+$string['marketingstyle_desc'] = 'Choose from the following marketing styles.  These will change the look and style of the marketing boxes on the site homepage.';
+$string['marketingstyle1'] = 'Top Bar Highlight';
+$string['marketingstyle2'] = 'Postit Note';
+$string['marketingstyle3'] = 'Simplicity';
+$string['marketingstyle4'] = 'Boxed Shadow';
 
 $string['contentsettings'] = 'Content areas';
 $string['footnote'] = 'Footnote';
@@ -262,6 +269,8 @@ $string['gutterwidth'] = 'Content Padding';
 $string['gutterwidth_desc'] = 'This setting controls how much spacing is used on the left and right of the main content.';
 $string['frontpagemycoursessorting'] = 'Frontpage My Courses Sort Order by Last Access';
 $string['frontpagemycoursessorting_desc'] = 'When checked this feature will sort the frontpage My Courses(enrolled courses) display by last access for the user.  This will override the "Sort my courses" setting under Navigation.  If unchecked then Frontpage My Courses will display as normal.';
+$string['showactivitynav'] = 'Show Activity Navigation';
+$string['showactivitynav_desc'] = 'Uncheck this to turn off activity navigation at the bottom of the activity pages.';
 
 //teacher and student dashboard slider
 $string['userlinks'] = 'User Links';
@@ -456,7 +465,10 @@ $string['marketing2'] = 'Marketing Spot Two';
 $string['marketing3'] = 'Marketing Spot Three';
 $string['marketing4'] = 'Marketing Spot Four';
 $string['marketing5'] = 'Marketing Spot Five';
-$string['marketing6'] = 'Marketing Spot six';
+$string['marketing6'] = 'Marketing Spot Six';
+$string['marketing7'] = 'Marketing Spot Seven';
+$string['marketing8'] = 'Marketing Spot Eight';
+$string['marketing9'] = 'Marketing Spot Nine';
 $string['marketingtitle'] = 'Title';
 $string['marketingtitledesc'] = 'Title to show in this marketing spot.  You must include a title in order for the Marketing Tile to appear.';
 $string['marketingicon'] = 'Link Icon';
