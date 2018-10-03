@@ -43,6 +43,10 @@ define('ATTENDANCE_AUTOMARK_DISABLED', 0);
 define('ATTENDANCE_AUTOMARK_ALL', 1);
 define('ATTENDANCE_AUTOMARK_CLOSE', 2);
 
+define('ATTENDANCE_SHAREDIP_DISABLED', 0);
+define('ATTENDANCE_SHAREDIP_MINUTES', 1);
+define('ATTENDANCE_SHAREDIP_FORCE', 2);
+
 // Max number of sessions available in the warnings set form to trigger warnings.
 define('ATTENDANCE_MAXWARNAFTER', 100);
 
@@ -95,7 +99,7 @@ function attendance_get_setname($attid, $statusset, $includevalues = true) {
         if ($statusesout) {
             if (count($statusesout) > 6) {
                 $statusesout = array_slice($statusesout, 0, 6);
-                $statusesout[] = '&helip;';
+                $statusesout[] = '...';
             }
             $statusesout = implode(' ', $statusesout);
             $statusname .= ' ('.$statusesout.')';
@@ -443,10 +447,18 @@ function attendance_can_student_mark($sess) {
     }
     // Check if another student has marked attendance from this IP address recently.
     if ($canmark && !empty($sess->preventsharedip)) {
-        $time = time() - ($sess->preventsharediptime * 60);
-        $sql = 'sessionid = ? AND studentid <> ? AND timetaken > ? AND ipaddress = ?';
-        $params = array($sess->id, $USER->id, $time, getremoteaddr());
-        $record = $DB->get_record_select('attendance_log', $sql, $params);
+        if ($sess->preventsharedip == ATTENDANCE_SHAREDIP_MINUTES) {
+            $time = time() - ($sess->preventsharediptime * 60);
+            $sql = 'sessionid = ? AND studentid <> ? AND timetaken > ? AND ipaddress = ?';
+            $params = array($sess->id, $USER->id, $time, getremoteaddr());
+            $record = $DB->get_record_select('attendance_log', $sql, $params);
+        } else {
+            // Assume ATTENDANCE_SHAREDIP_FORCED.
+            $sql = 'sessionid = ? AND studentid <> ? ipaddress = ?';
+            $params = array($sess->id, $USER->id, getremoteaddr());
+            $record = $DB->get_record_select('attendance_log', $sql, $params);
+        }
+
         if (!empty($record)) {
             // Trigger an ip_shared event.
             $attendanceid = $DB->get_field('attendance_sessions', 'attendanceid', array('id' => $record->sessionid));
@@ -575,6 +587,11 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         $formdata->studentscanmark = 0;
     }
 
+    $calendarevent = 0;
+    if (isset($formdata->calendarevent)) { // Calendar event should be created.
+        $calendarevent = 1;
+    }
+
     $sessions = array();
     if (isset($formdata->addmultiply)) {
         $startdate = $sessiondate;
@@ -607,9 +624,11 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
                     $sess->descriptionitemid = $formdata->sdescription['itemid'];
                     $sess->description = $formdata->sdescription['text'];
                     $sess->descriptionformat = $formdata->sdescription['format'];
+                    $sess->calendarevent = $calendarevent;
                     $sess->timemodified = $now;
                     $sess->absenteereport = $absenteereport;
                     $sess->studentpassword = '';
+                    $sess->includeqrcode = 0;
                     if (isset($formdata->studentscanmark)) { // Students will be able to mark their own attendance.
                         $sess->studentscanmark = 1;
                         if (!empty($formdata->usedefaultsubnet)) {
@@ -626,6 +645,9 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
                             $sess->studentpassword = attendance_random_string();
                         } else if (!empty($formdata->studentpassword)) {
                             $sess->studentpassword = $formdata->studentpassword;
+                        }
+                        if (!empty($formdata->includeqrcode)) {
+                            $sess->includeqrcode = $formdata->includeqrcode;
                         }
                         if (!empty($formdata->preventsharedip)) {
                             $sess->preventsharedip = $formdata->preventsharedip;
@@ -657,6 +679,7 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         $sess->descriptionitemid = $formdata->sdescription['itemid'];
         $sess->description = $formdata->sdescription['text'];
         $sess->descriptionformat = $formdata->sdescription['format'];
+        $sess->calendarevent = $calendarevent;
         $sess->timemodified = $now;
         $sess->studentscanmark = 0;
         $sess->autoassignstatus = 0;
@@ -665,6 +688,7 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
         $sess->automark = 0;
         $sess->automarkcompleted = 0;
         $sess->absenteereport = $absenteereport;
+        $sess->includeqrcode = 0;
 
         if (isset($formdata->studentscanmark) && !empty($formdata->studentscanmark)) {
             // Students will be able to mark their own attendance.
@@ -676,6 +700,9 @@ function attendance_construct_sessions_data_for_add($formdata, mod_attendance_st
                 $sess->studentpassword = attendance_random_string();
             } else if (!empty($formdata->studentpassword)) {
                 $sess->studentpassword = $formdata->studentpassword;
+            }
+            if (!empty($formdata->includeqrcode)) {
+                $sess->includeqrcode = $formdata->includeqrcode;
             }
             if (!empty($formdata->usedefaultsubnet)) {
                 $sess->subnet = $att->subnet;
@@ -930,5 +957,19 @@ function attendance_get_automarkoptions() {
         $options[ATTENDANCE_AUTOMARK_ALL] = get_string('automarkall', 'attendance');
     }
     $options[ATTENDANCE_AUTOMARK_CLOSE] = get_string('automarkclose', 'attendance');
+    return $options;
+}
+
+/**
+ * Get available sharedip options.
+ *
+ * @return array
+ */
+function attendance_get_sharedipoptions() {
+    $options = array();
+    $options[ATTENDANCE_SHAREDIP_DISABLED] = get_string('no');
+    $options[ATTENDANCE_SHAREDIP_FORCE] = get_string('yes');
+    $options[ATTENDANCE_SHAREDIP_MINUTES] = get_string('setperiod', 'attendance');
+
     return $options;
 }
