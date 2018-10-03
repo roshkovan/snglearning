@@ -216,6 +216,13 @@ $string['sectionlayout6'] = 'Highlighted Section Title';
 $string['sectionlayout7'] = 'University Learner';
 $string['sectionlayout8'] = 'Corporate Learner';
 
+$string['marketingstyle'] = 'Marketing Tile Style Chooser';
+$string['marketingstyle_desc'] = 'Choose from the following marketing styles.  These will change the look and style of the marketing boxes on the site homepage.';
+$string['marketingstyle1'] = 'Top Bar Highlight';
+$string['marketingstyle2'] = 'Postit Note';
+$string['marketingstyle3'] = 'Simplicity';
+$string['marketingstyle4'] = 'Boxed Shadow';
+
 $string['contentsettings'] = 'Content areas';
 $string['footnote'] = 'Footnote';
 $string['footnotedesc'] = 'Footnote content editor for main footer';
@@ -456,7 +463,10 @@ $string['marketing2'] = 'Marketing Spot Two';
 $string['marketing3'] = 'Marketing Spot Three';
 $string['marketing4'] = 'Marketing Spot Four';
 $string['marketing5'] = 'Marketing Spot Five';
-$string['marketing6'] = 'Marketing Spot six';
+$string['marketing6'] = 'Marketing Spot Six';
+$string['marketing7'] = 'Marketing Spot Seven';
+$string['marketing8'] = 'Marketing Spot Eight';
+$string['marketing9'] = 'Marketing Spot Nine';
 $string['marketingtitle'] = 'Title';
 $string['marketingtitledesc'] = 'Title to show in this marketing spot.  You must include a title in order for the Marketing Tile to appear.';
 $string['marketingicon'] = 'Link Icon';
