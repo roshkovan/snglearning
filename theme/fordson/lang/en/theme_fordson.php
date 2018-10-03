@@ -198,7 +198,7 @@ $string['layoutinfo'] = 'Layout Settings';
 $string['layoutinfodesc'] = 'Control page layout by chooseing a design.';
 
 $string['pagelayout'] = 'Layout Chooser';
-$string['pagelayout_desc'] = 'Choose from the following layouts.  <a href="https://goo.gl/fMXzSo" target="_new">Instructions for Fordson 3.5 Theme</a>';
+$string['pagelayout_desc'] = 'Choose from the following layouts. Certain page layouts require additional adjustments on the Preset Adjustments Page.  Be sure to pay attention to: Learning Content Spacing, Header Image Height, and Content Padding as these will help adjust header image placement and padding to the left and right of the main learning content. <a href="https://goo.gl/fMXzSo" target="_new">Instructions for Fordson 3.5 Theme</a>';
 $string['pagelayout1'] = 'Default Boost Layout';
 $string['pagelayout2'] = 'Full-Width / Top Header Image';
 $string['pagelayout3'] = 'Centered Content / Overlapping Top Header Image';
@@ -269,6 +269,8 @@ $string['gutterwidth'] = 'Content Padding';
 $string['gutterwidth_desc'] = 'This setting controls how much spacing is used on the left and right of the main content.';
 $string['frontpagemycoursessorting'] = 'Frontpage My Courses Sort Order by Last Access';
 $string['frontpagemycoursessorting_desc'] = 'When checked this feature will sort the frontpage My Courses(enrolled courses) display by last access for the user.  This will override the "Sort my courses" setting under Navigation.  If unchecked then Frontpage My Courses will display as normal.';
+$string['showactivitynav'] = 'Show Activity Navigation';
+$string['showactivitynav_desc'] = 'Uncheck this to turn off activity navigation at the bottom of the activity pages.';
 
 //teacher and student dashboard slider
 $string['userlinks'] = 'User Links';
